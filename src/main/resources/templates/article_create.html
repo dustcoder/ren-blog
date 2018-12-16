@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>博客后台系统主页</title>
+
+	<script src="../js/jquery-3.3.1.js"></script>
+	<style>
+		.nevi{
+			height:100px;
+			width:100%;
+			background-color: #cccccc;
+
+
+		}
+
+		.title{
+			font-size:28px;
+			text-align:center;
+			display:block;
+			position: relative;
+			top:50%;
+			transform:translateY(-50%);
+
+
+		}
+		.main{
+			margin-left:20px;
+
+			height:500px;
+			margin-right:20px;
+		}
+
+		li{
+			float: left;
+			list-style:none
+
+		}
+		.bread{
+			width:100%;
+			background-color:yellow;
+			height:50px;
+		}
+
+		.tabs{
+			margin-top:15px;
+			height:74px;
+		}
+		.tab_list{
+			height:42px;
+			border-bottom:5px solid #CC0033;
+			padding:0px;
+		}
+
+		.tab_list li{
+			padding:5px;
+			padding-bottom: 0px;
+			padding:0px;
+		}
+
+		.tab_list li a{
+			position: relative;
+			background: #ddd;
+			padding: 10px 50px;
+			float: left;
+			text-decoration: none;
+			color: #444;
+			text-shadow: 0 1px 0 rgba(255, 255, 255, .8);
+			border-radius: 20px 20px 0 0;
+			box-shadow: 0 2px 2px rgba(0, 0, 0, .4);
+
+
+		}
+
+		.current a{
+			outline: 0;
+			background: #fff;
+			z-index: 4;
+		}
+
+		.new_button{
+			width:100%;
+			height:82px;
+		}
+		#new{
+			float: right;
+			width:184px;
+			height:50px;
+		}
+
+		.ui{
+			padding:0px;
+		}
+		.title_th{
+			height:50px;
+			font-size:14px;
+		}
+		.table_div{
+			width:100%
+		}
+		.table{
+			width:100%;
+		}
+		th
+		{
+			border:1px solid black;
+		}
+
+		.article_id{
+			width:80px;
+		}
+		.article_content{
+			width:200px;
+		}
+		.count{
+			width:100px;
+		}
+		.clasify{
+			width:180px;
+		}
+		.tag{
+			width:140px;
+		}
+		.show{
+			width:80px;
+		}
+		.update_time{
+			width:160px;
+		}
+		.operation{
+			width:160px;
+		}
+		th{
+			height:50px
+		}
+		table {
+			border-collapse: collapse;
+		}
+		td{
+			border:1px solid black;
+			text-align:center;
+		}
+		.lable{
+			float: left;
+			padding-right: 10px;
+			text-align: right;
+			width: 80px;
+			line-height: 35px;
+		}
+		.content_div{
+			float: left;
+			margin-left: 80px;
+		}
+		.content_line{
+			clear: both;
+			padding-top: 20px;
+		}
+		em{
+			color: #F45858;
+		}
+		.article_title{
+			height: 36px;
+			width: 500px;
+		}
+		.radio{
+			float: left;
+		}
+		.no{
+			margin-left: 20px
+		}
+		.first{
+			float: left;
+		}
+		.sec{
+			float: left;
+			margin-left:20px
+		}
+		.summit{
+			clear:both;
+			margin-top: 100px;
+
+		}
+		.baocun{
+			width:193px;
+			height:50px
+
+		}
+		#label-selected{
+			width: 100%;
+			min-height: 50px;
+		}
+
+		.selected li{
+			display: inline-block;
+			height: 27px;
+			padding: 0 1rem;
+			border: 1px solid #e6e6e6;
+			border-radius: 2px;
+			cursor: pointer;
+			margin: 4px 2px;
+			color: #666;
+			line-height: 27px;
+		}
+
+		.all li{
+			display: inline-block;
+			height: 27px;
+			line-height: 27px;
+			font-size: .8rem;
+			padding: 0 1rem;
+			border: 1px solid #e6e6e6;
+			border-radius: 2px;
+			cursor: pointer;
+			margin-bottom: 5px;
+			margin-left: 2px;
+			color: #666;
+
+		}
+		.all{
+			width: 100%;
+			min-height: 50px;
+		}
+		.kexuan{
+			float: left;
+		}
+
+		.tag{
+			clear: left;
+			padding-top: 14px;
+			width: 100%;
+		}
+		.tag .selected{
+			color: #ccc;
+		}
+
+
+
+
+	</style>
+</head>
+<body>
+<div class="nevi">
+	<span class="title">吴忍的博客后台系统</span>
+</div>
+<div class="main">
+	<div class="bread">
+		<ul class="ui">
+			<li><a href="#">首页</a></li>
+			<li>&gt;</li>
+			<li><a href="#">文章详情页</a></li>
+		</ul>
+	</div>
+
+	<form action="/article/saveOrUpdateArticle " method="post" id="article_form">
+	<div class="content_line">
+
+			<lable class="lable">
+				文章id
+			</lable>
+			<div class = "content_div">
+				<span>1234567</span>
+			</div>
+
+	</div>
+	<div class="content_line">
+		<lable class="lable"><em>*</em>文章标题
+		</lable>
+		<div class = "content_div">
+			<input type="text" class="article_title" name="articleName"></input>
+		</div>
+
+	</div>
+	<div class="content_line">
+		<lable class="lable">是否显示
+		</lable>
+		<div class = "content_div">
+			<div class="radio yes"> <input type="radio" class="radio" name="enable" value="1">是</input></div>
+
+			<div class="radio no"> <input type="radio" class="radio" name="enable" value="0" checked>否</input></div>
+
+		</div>
+
+	</div>
+
+	<div class="content_line">
+		<lable class="lable"><em>*</em>所属分类
+		</lable>
+		<div class = "content_div">
+			<div class="cata first">
+				<select name="cataId" id="first_level">
+					<option value="">请选择一级分类</option>
+					<option>人工智能</option>
+					<option>机器学习</option>
+					<option>大数据</option>
+					<option>Java</option>
+				</select>
+			</div>
+
+			<div class="cata sec">
+				<select  id="sec_lev" name="subCataId">
+					<option value="">请选择二级分类</option>
+					<option>hadoop</option>
+					<option>hive</option>
+				</select>
+			</div>
+
+		</div>
+
+
+	</div>
+
+
+	<div class="content_line">
+		<lable class="lable">标签
+		</lable>
+		<div class = "content_div">
+			<div class="lable selected" id="label-selected">
+				<input type="hidden" name="tagIds"/>
+			</div>
+
+			<div class="lable all">
+				<div class="kexuan">
+					<span>可选标签</span>
+				</div>
+				<div class="tag" id="tagList">
+					<li data="1"><span>大数据</span></li>
+					<li data="2"><span>人工智能</span></li>
+					<li data="3"><span>kafka</span></li>
+					<li data="4"><span>java</span></li>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+	<div class="summit">
+		<button class="baocun">编辑正文内容</button>
+	</div>
+
+	<div class="summit">
+		<button class="baocun" onclick="saveArticle()">保存</button>
+
+	</div>
+
+</div>
+
+</form>
+
+
+
+
+
+
+</div>
+<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+
+<script type="text/javascript">
+
+	//保存文章
+	function saveArticle(){
+	    $("#article_form").submit();
+	}
+    $(".tag").on("click","li",function(){
+        var id = $(this).attr("data");
+        var text = $(this).children("span").html();
+        var labelHTML = "<li data='"+id+"''>x "+text+"</li>";
+        if($(this).hasClass("selected")){
+            return false;
+        }else if($("#label-selected").children("li").length >= 8){
+            layer.msg("最多可以选择8个哦");
+            return false;
+        }
+        $("#label-selected").append(labelHTML);
+        val = '';
+        for(var i = 0; i < $("#label-selected").children("li").length; i++){
+            val += $("#label-selected").children("li").eq(i).attr("data")+',';
+        }
+        $("input[name='tagIds']").val(val);
+        $(this).addClass("selected");
+    });
+
+    var val = "";
+    $("#label-selected").on("click","li",function(){
+        var id = $(this).attr("data");
+        val = '';
+        $(this).remove();
+        for(var i = 0; i < $("#label-selected").children("li").length; i++){
+            val += $("#label-selected").children("li").eq(i).attr("data")+',';
+        }
+        $("input[name='tagIds']").val(val);
+        $(".tag").find("li[data='"+id+"']").removeClass("selected");
+    });
+
+
+
+
+    $(function(){
+        //获取一级分类
+        $.ajax({
+            type: 'get',
+            url: '/cata/getCataList',
+            data:{cataLevel:"1"},
+            dataType: "json",
+            success: function(result){
+			    var first_lev = "<option value=\"\">请选择一级分类</option>";
+			    for(var i=0; i<result.data.length; i++){
+			        first_lev = first_lev + "<option value="+result.data[i].cata_id+">" + result.data[i].cata_name + "</option>";
+				}
+
+				$("#first_level").html(first_lev);
+                console.log(result.data);
+            }
+        });
+
+        //获取二级分类
+        $.ajax({
+            type: 'get',
+            url: '/cata/getCataList',
+            data:{cataLevel:"2"},
+            dataType: "json",
+            success: function(result){
+                var sec_lev = "<option value=\"\">请选择二级分类</option>";
+                for(var i=0; i<result.data.length; i++){
+                    sec_lev = sec_lev + "<option value="+result.data[i].cata_id+">" + result.data[i].cata_name + "</option>";
+                }
+
+                $("#sec_lev").html(sec_lev);
+            }
+        });
+
+
+        //获取所有标签
+        $.ajax({
+            type: 'get',
+            url: '/tag/getTagList',
+            dataType: "json",
+            success: function(result){
+                var tag_list = "";
+
+                "<li data=\"1\"><span>大数据</span></li>";
+                for(var i=0; i<result.data.length; i++){
+                    tag_list = tag_list + "<li data=" + result.data[i].tag_id + "><span>" +
+						result.data[i].tag_name + "</span></li>";
+                }
+
+                $("#tagList").html(tag_list);
+            }
+        });
+
+
+    });
+
+
+</script>
+
+</body>
+</html>

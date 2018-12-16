@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>吴忍的博客后台系统</title>
+    <script src="../js/jquery-3.3.1.js"></script>
+    <style>
+        .nevi{
+            height:100px;
+            width:100%;
+            background-color: #cccccc;
+        }
+        .title{
+            font-size:28px;
+            text-align:center;
+            display:block;
+            position: relative;
+            top:50%;
+            transform:translateY(-50%);
+
+
+        }
+        .login{
+            margin-top:40px;
+            margin-left:420px;
+
+
+        }
+        .login_lable{
+            font-size:14px;
+            text-align:right;
+        }
+
+        .summit_button{
+            background-color: #cccccc;
+            width:193px;
+            height:50px;
+            font-size:20px;
+            margin-top:0px;
+
+        }
+        .11{
+            text-align: center;
+            margin-top:60px;
+        }
+        input{
+            height:50px;
+
+        }
+        .pwd,.account{
+            width:300px;
+        }
+        .check_code{
+            width:164px;
+            height:50px;
+            vertical-align:middle;
+        }
+        .img{
+            width:132px;
+            height:50px;
+            text-align:right;
+            vertical-align:middle;
+
+
+        }
+        .summit{
+            margin-left:460px;
+            margin-top:60px;
+
+        }
+        #shuaxin{
+            color:	 #3366FF;
+        }
+        table{
+            border-collapse:separate;
+            border-spacing:25px;
+        }
+        td{
+            text-align: right;
+            font-size: 14px;
+        }
+        #img_td{
+            text-align: left;
+        }
+
+
+
+
+    </style>
+</head>
+<body onload="getVerify()">
+<script type="text/javascript">
+    //获取验证码
+    function getVerify(){
+        document.getElementById("img").src =   "http://localhost:8080/user/getVerify?"+Math.random();
+    }
+
+    function login() {
+        $("#sub_form").submit();
+    }
+</script>
+<div class="nevi">
+    <span class="title">吴忍的博客后台系统</span>
+</div>
+<div class="login">
+    <table class="table" border="0">
+        <form id="sub_form" action="http://localhost:8080/user/login" >
+        <tbody>
+        <tr>
+            <td> 账号 </td>
+            <td><input type="text" class="account" name="userName" /></td>
+        </tr>
+        <tr>
+            <td> 密码 </td>
+            <td><input type="password" class="pwd" name="pwd" /></td>
+        </tr>
+        <tr>
+            <td> 验证码 </td>
+            <td id="img_td"> <input type="text" class="check_code" placeholder="请输入验证码" name="checkCode" /> <img class="img" id="img" /> </td>
+            <td> <span id="shuaxin">刷新验证码</span> </td>
+        </tr>
+        </tbody>
+        </form>
+    </table>
+</div>
+<div class="summit">
+    <button class="summit_button" onclick="login()">登录</button>
+</div>
+</body>
+</html>

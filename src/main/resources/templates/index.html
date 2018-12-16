@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>博客后台系统主页</title>
+    <style>
+        .nevi{
+            height:100px;
+            width:100%;
+            background-color: #cccccc;
+
+
+        }
+
+        .title{
+            font-size:28px;
+            text-align:center;
+            display:block;
+            position: relative;
+            top:50%;
+            transform:translateY(-50%);
+
+
+        }
+        .main{
+            margin-left:20px;
+
+            height:500px;
+            margin-right:20px;
+        }
+
+        li{
+            float: left;
+            list-style:none
+
+        }
+        .bread{
+            width:100%;
+            background-color:yellow;
+            height:50px;
+        }
+
+        .tabs{
+            margin-top:15px;
+            height:74px;
+        }
+        .tab_list{
+            height:42px;
+            border-bottom:5px solid #CC0033;
+            padding:0px;
+        }
+
+        .tab_list li{
+            padding:5px;
+            padding-bottom: 0px;
+            padding:0px;
+        }
+
+        .tab_list li a{
+            position: relative;
+            background: #ddd;
+            padding: 10px 50px;
+            float: left;
+            text-decoration: none;
+            color: #444;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, .8);
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 2px 2px rgba(0, 0, 0, .4);
+
+
+        }
+
+        .current a{
+            outline: 0;
+            background: #fff;
+            z-index: 4;
+        }
+
+        .new_button{
+            width:100%;
+            height:82px;
+        }
+        #new{
+            float: right;
+            width:184px;
+            height:50px;
+        }
+
+        .ui{
+            padding:0px;
+        }
+        .title_th{
+            height:50px;
+            font-size:14px;
+        }
+        .table_div{
+            width:100%
+        }
+        .table{
+            width:100%;
+        }
+        th
+        {
+            border:1px solid black;
+        }
+
+        .article_id{
+            width:80px;
+        }
+        .article_content{
+            width:200px;
+        }
+        .count{
+            width:100px;
+        }
+        .clasify{
+            width:180px;
+        }
+        .tag{
+            width:140px;
+        }
+        .show{
+            width:80px;
+        }
+        .update_time{
+            width:160px;
+        }
+        .operation{
+            width:160px;
+        }
+        th{
+            height:50px
+        }
+        table {
+            border-collapse: collapse;
+        }
+        td{
+            border:1px solid black;
+            text-align:center;
+        }
+
+
+
+    </style>
+</head>
+<body>
+<div class="nevi">
+    <span class="title">吴忍的博客后台系统</span>
+</div>
+<div class="main">
+    <div class="bread">
+        <ul class="ui">
+            <li><a href="#">首页</a></li>
+            <li>&gt;</li>
+        </ul>
+    </div>
+
+    <div class="tabs">
+        <ul class="tab_list">
+            <li class="current"><a href="/index">文章列表</a></li>
+            <li> </li>
+            <li><a href="/cata/index">分类列表</a></li>
+            <li> </li>
+            <li><a href="/tag/index">标签列表</a></li>
+            <li> </li>
+        </ul>
+    </div>
+
+    <div class="new_button">
+        <a href="/article/index"><button id="new">+ 新建文章</button></a>
+    </div>
+    <div class="table_div">
+        <table class="table">
+            <tr class="title_th">
+                <th class="article_id">文章id</th>
+                <th class="article_content">文章名称</th>
+                <th class="count">阅读量</th>
+                <th class="clasify">所属分类</th>
+                <th class="tag">标签</th>
+                <th class="show">是否显示</th>
+                <th class="update_time">更新时间</th>
+                <th class="operation">操作</th>
+            </tr>
+            <tr>
+                <td>文章id</td>
+                <td>文章名称</td>
+                <td>阅读量</td>
+                <td>所属分类</td>
+                <td>标签</td>
+                <td>是否显示</td>
+                <td>更新时间</td>
+                <td>
+                    <a href="/article/index">编辑</a>
+                    <a href="/article" target="_blank">编辑正文</a>
+                    <a href="#">删除</a>
+
+                </td>
+            </tr>
+            <tr>
+                <td>文章id</td>
+                <td>文章名称</td>
+                <td>阅读量</td>
+                <td>所属分类</td>
+                <td>标签</td>
+                <td>是否显示</td>
+                <td>更新时间</td>
+                <td>
+                    <a href="#">编辑</a>
+                    <a href="#">编辑正文</a>
+                    <a href="#">删除</a>
+
+                </td>
+            </tr>
+
+
+
+        </table>
+
+
+    </div>
+</div>
+</body>
+</html>

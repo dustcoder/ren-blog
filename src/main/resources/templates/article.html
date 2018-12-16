@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8" />
+        <title>create article</title>
+        <link rel="stylesheet" href="../editor/css/editormd.css" />
+    </head>
+    <body>
+        <form action="/article/add" method="post">
+		<div class="editormd" id="test-editormd">
+		  <textarea class="editormd-markdown-textarea" name="test-editormd-markdown-doc"></textarea>
+		  <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
+		  <textarea class="editormd-html-textarea" name="text"></textarea>
+		</div>
+            <div>
+                <input type="submit" value="提交"/>
+            </div>
+        </form>
+
+        <script src="../editor/jquery.min.js"></script>
+        <script src="../editor/editormd.min.js"></script>
+        <script type="text/javascript">
+			var testEditor;
+
+            $(function() {
+                editormd("test-editormd", {
+                    width   : "90%",
+                    height  : 640,
+                    syncScrolling : "single",
+                    path    : "http://localhost:8080/editor/lib/",
+                    imageUpload : true,
+                    imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                    imageUploadURL : "/uploadfile",
+                    saveHTMLToTextarea : true,
+                });
+                //editor.md期望得到一个json格式的上传后的返回值，格式是这样的：
+                /*
+                {
+                    success : 0 | 1,           // 0 表示上传失败，1 表示上传成功
+                    message : "提示的信息，上传成功或上传失败及错误信息等。",
+                    url     : "图片地址"        // 上传成功时才返回
+                }
+*/
+            });
+
+
+        </script>
+    </body>
+</html>
