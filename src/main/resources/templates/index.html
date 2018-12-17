@@ -180,36 +180,14 @@
                 <th class="update_time">更新时间</th>
                 <th class="operation">操作</th>
             </tr>
-            <tr>
-                <td>文章id</td>
-                <td>文章名称</td>
-                <td>阅读量</td>
-                <td>所属分类</td>
-                <td>标签</td>
-                <td>是否显示</td>
-                <td>更新时间</td>
-                <td>
-                    <a href="/article/index">编辑</a>
-                    <a href="/article" target="_blank">编辑正文</a>
-                    <a href="#">删除</a>
 
-                </td>
-            </tr>
+            @for(article in articleList){
             <tr>
-                <td>文章id</td>
-                <td>文章名称</td>
-                <td>阅读量</td>
-                <td>所属分类</td>
-                <td>标签</td>
-                <td>是否显示</td>
-                <td>更新时间</td>
-                <td>
-                    <a href="#">编辑</a>
-                    <a href="#">编辑正文</a>
-                    <a href="#">删除</a>
+                <td>${article.articleId}</td>
+                <td>${article.articleId}</td>
 
-                </td>
             </tr>
+            @}
 
 
 

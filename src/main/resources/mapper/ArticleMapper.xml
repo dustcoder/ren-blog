@@ -20,6 +20,18 @@
     <result column="src_image" property="srcImage" jdbcType="VARCHAR" />
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
+
+  <resultMap id="articleMap" type="com.ren.blog.model.Article">
+    <id column="article_id" property="articleId" jdbcType="INTEGER" />
+    <result column="article_name" property="articleName" jdbcType="VARCHAR" />
+    <result column="read_count" property="readCount" jdbcType="BIGINT" />
+    <result column="cata_id" property="cataId" jdbcType="INTEGER" />
+    <result column="sub_cata_id" property="subCataId" jdbcType="INTEGER" />
+    <result column="enable" property="enable" jdbcType="CHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="first_cate_name" property="firstCateName" jdbcType="VARCHAR" />
+    <result column="sec_cata_name" property="secCataName" jdbcType="VARCHAR" />
+  </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     <!--
       WARNING - @mbggenerated
@@ -80,7 +92,7 @@
     from article
   </select>
 
-  <select id="getArticleList">
+  <select id="getArticleList" resultMap="articleMap">
       SELECT
       t.article_id,
       t.article_name,

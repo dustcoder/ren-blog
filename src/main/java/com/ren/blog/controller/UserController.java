@@ -94,8 +94,7 @@ public class UserController {
             if("wuren".equals(userName) && "qiuqiu1314".equals(pwd)){
                 request.getSession().setAttribute("userName",userName);
                 request.getSession().setAttribute("pwd",pwd);
-                ModelAndView view = new ModelAndView();
-                view.setViewName("index.html");
+                ModelAndView view = new ModelAndView("redirect:/index");
                 return view;
             }
         }catch (Exception e){

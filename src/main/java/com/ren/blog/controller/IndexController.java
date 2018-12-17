@@ -45,6 +45,7 @@ public class IndexController {
         ModelAndView view = new ModelAndView();
         view.setViewName("index.html");
         view.addObject("articleList",articleList);
+        view.addObject("money","1314");
         return view;
     }
 }
