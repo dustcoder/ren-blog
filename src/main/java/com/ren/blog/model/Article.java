@@ -9,6 +9,15 @@ public class Article implements Serializable {
     private String secCataName;
     private String tagName;
     private String cataName;
+    private String mdContent;
+
+    public String getMdContent() {
+        return mdContent;
+    }
+
+    public void setMdContent(String mdContent) {
+        this.mdContent = mdContent;
+    }
 
     public String getFirstCateName() {
         return firstCateName;

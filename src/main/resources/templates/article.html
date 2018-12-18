@@ -6,14 +6,18 @@
         <link rel="stylesheet" href="../editor/css/editormd.css" />
     </head>
     <body>
-        <form action="/article/add" method="post">
-		<div class="editormd" id="test-editormd">
-		  <textarea class="editormd-markdown-textarea" name="test-editormd-markdown-doc"></textarea>
+        <form action="/article/add" method="post" id="formBlog">
+
+            <input value="${articleId}"  type="hidden" name="articleId"/>
+            <textarea id="blog_md" name="mdContent" value="" style="display: none;"></textarea>
+
+            <div class="editormd" id="test-editormd">
+		  <textarea class="editormd-markdown-textarea" name="test-editormd-markdown-doc">${mdContent}</textarea>
 		  <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
-		  <textarea class="editormd-html-textarea" name="text"></textarea>
+		  <textarea class="editormd-html-textarea" name="content"></textarea>
 		</div>
             <div>
-                <input type="submit" value="提交"/>
+                <button  value="提交" id="btn-blog-save"/>
             </div>
         </form>
 
@@ -23,7 +27,7 @@
 			var testEditor;
 
             $(function() {
-                editormd("test-editormd", {
+                md_edit = editormd("test-editormd", {
                     width   : "90%",
                     height  : 640,
                     syncScrolling : "single",
@@ -43,6 +47,18 @@
 */
             });
 
+
+                $('#btn-blog-save').click(function() {
+
+                    $("#blog_md").val(md_edit.getMarkdown());//md格式内容，使用md的js获取
+                    // $("#blog_html").val(md_edit.getHTML());
+                    $("#formBlog").ajaxSubmit({
+                        success : function(da) {
+                            $.scojs_message('发布成功', $.scojs_message.TYPE_OK);
+                            //todo 重定向
+                        }
+                    });
+                });
 
         </script>
     </body>

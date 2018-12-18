@@ -184,8 +184,18 @@
             @for(article in articleList){
             <tr>
                 <td>${article.articleId}</td>
-                <td>${article.articleId}</td>
+                <td>${article.articleName}</td>
+                <td>${article.readCount}</td>
+                <td>${article.tagName}</td>
+                <td>${article.cataName}</td>
+                <td>${article.enable}</td>
+                <td>${article.updateTime,dateFormat="yyyy-MM-dd hh:mm:ss"}</td>
+                <td>
+                    <a href="#">编辑</a>
+                    <a href="/article?articleId=${article.articleId}" target="_Blank">编辑正文</a>
+                    <a href="#">删除</a>
 
+                </td>
             </tr>
             @}
 

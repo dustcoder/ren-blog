@@ -16,6 +16,11 @@ import java.util.List;
 public class ArticleServiceImpl implements ArticleService{
 
     @Override
+    public Article getArticle(Integer articleId) {
+        return articleMapper.selectByPrimaryKey(articleId);
+    }
+
+    @Override
     public List<Article> getArticleList() {
         return articleMapper.getArticleList();
     }

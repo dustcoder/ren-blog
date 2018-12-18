@@ -16,4 +16,6 @@ public interface ArticleService {
 
     List<Article> getArticleList();
 
+    Article getArticle(Integer articleId);
+
 }

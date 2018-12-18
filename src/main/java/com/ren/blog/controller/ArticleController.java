@@ -28,26 +28,31 @@ public class ArticleController {
     private TagService tagService;
 
     @GetMapping("/article")
-    public ModelAndView article(){
+    public ModelAndView article(@RequestParam(value="articleId") Integer articleId){
         ModelAndView model = new ModelAndView();
+        model.addObject("articleId",articleId);
+        model.addObject("content",articleService.getArticle(articleId).getContent());
+        model.addObject("mdContent",articleService.getArticle(articleId).getMdContent());
         model.setViewName("article.html");
         return model;
     }
 
     //新增文章内容
     @PostMapping("/article/add")
-    public void summit(HttpServletRequest request, HttpServletResponse response){
+    public ModelAndView summit(Article article){
         //todo  存库
-        String html = request.getParameter("text");
-        System.out.println(">>>>>>>>>>" + html);
-
+//        String html = request.getParameter("text");
+//        System.out.println(">>>>>>>>>>" + html);
+        articleService.updateArticle(article);
+        return  null;  //todo forward首页
     }
 
 
     @GetMapping("/article/index")
-    public ModelAndView createArticle(){
+    public ModelAndView createArticle(@RequestParam(value="articleId") String articleId){
         ModelAndView model = new ModelAndView();
         model.setViewName("article_create.html");
+        model.addObject("articleId",articleId);
         return model;
     }
 
