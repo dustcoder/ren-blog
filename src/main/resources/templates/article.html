@@ -4,6 +4,16 @@
         <meta charset="utf-8" />
         <title>create article</title>
         <link rel="stylesheet" href="../editor/css/editormd.css" />
+
+        <style>
+            #btn-blog-save{
+                width: 100px;
+                height: 40px;
+                margin-left: 100px;
+            }
+
+
+        </style>
     </head>
     <body>
         <form action="/article/add" method="post" id="formBlog">
@@ -17,7 +27,7 @@
 		  <textarea class="editormd-html-textarea" name="content"></textarea>
 		</div>
             <div>
-                <button  value="提交" id="btn-blog-save"/>
+                <button  value="提交" id="btn-blog-save">提 交</button>
             </div>
         </form>
 
@@ -52,12 +62,31 @@
 
                     $("#blog_md").val(md_edit.getMarkdown());//md格式内容，使用md的js获取
                     // $("#blog_html").val(md_edit.getHTML());
-                    $("#formBlog").ajaxSubmit({
-                        success : function(da) {
-                            $.scojs_message('发布成功', $.scojs_message.TYPE_OK);
-                            //todo 重定向
+                    // $("#formBlog").ajaxSubmit({
+                    //     success : function(da) {
+                    //         $.scojs_message('发布成功', $.scojs_message.TYPE_OK);
+                    //
+                    //         location='/index';
+                    //         //todo 重定向
+                    //     }
+                    // });
+
+                    $.ajax({
+                        type: 'post',
+                        url: '/article/add',
+                        data:$('#formBlog').serialize(),
+                        success: function(result){
+                            if(result == 'true'){
+                                alert("保存成功");
+                                window.location.href = "/index";
+                            }else{
+                                alert("保存失败");
+                            }
+
                         }
                     });
+
+
                 });
 
         </script>

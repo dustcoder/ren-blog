@@ -7,12 +7,14 @@ package com.ren.blog.controller;/*
 import com.ren.blog.model.Article;
 import com.ren.blog.service.ArticleService;
 import com.ren.blog.service.TagService;
+import com.ren.blog.util.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,12 +41,18 @@ public class ArticleController {
 
     //新增文章内容
     @PostMapping("/article/add")
-    public ModelAndView summit(Article article){
-        //todo  存库
+    @ResponseBody
+    public String summit(Article article){
+        //todo
 //        String html = request.getParameter("text");
 //        System.out.println(">>>>>>>>>>" + html);
-        articleService.updateArticle(article);
-        return  null;  //todo forward首页
+        try {
+            articleService.updateArticle(article);
+        }catch (Exception e){
+            e.printStackTrace();
+            return "false";
+        }
+        return  "true";  //todo forward首页
     }
 
 
