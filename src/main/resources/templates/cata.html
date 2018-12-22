@@ -1,231 +1,128 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>博客后台系统主页</title>
-    <style>
-        .nevi{
-            height:100px;
-            width:100%;
-            background-color: #cccccc;
+@var headCss={
+    .new_button{
+    width:100%;
+    height:82px;
+    }
+    #new{
+    float: right;
+    width:184px;
+    height:50px;
+    }
+
+    .ui{
+    padding:0px;
+    }
+    .title_th{
+    height:50px;
+    font-size:14px;
+    }
+    .table_div{
+    width:100%
+    }
+    .table{
+    width:100%;
+    }
+    th
+    {
+    border:1px solid black;
+    }
+
+    .article_id{
+    width:80px;
+    }
+    .article_content{
+    width:200px;
+    }
+    .count{
+    width:100px;
+    }
+    .clasify{
+    width:180px;
+    }
+    .tag{
+    width:140px;
+    }
+    .show{
+    width:80px;
+    }
+    .update_time{
+    width:160px;
+    }
+    .operation{
+    width:160px;
+    }
+    th{
+    height:50px
+    }
+    table {
+    border-collapse: collapse;
+    }
+    td{
+    border:1px solid black;
+    text-align:center;
+    }
+
+    #HBox{
+    display: none;
+    }
+    #HCloseBtn {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    display: inline-block;
+    cursor: pointer;
+    color: #fff;
+    text-align: center;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    border-radius: 3px;
+    }
+
+    .list li strong {
+    width: 20%;
+    float: left;
+    display: inline-block;
+    margin-right: 10px;
+    text-align: right;
+    }
+    .list li {
+    width: 80%;
+    margin: 10px auto auto;
+    overflow: hidden;
+    }
+    .list {
+    padding: 25px 0;
+    }
+    strong{
+    strong
+    }
+    #HBox1{
+    display: none;
+    }
+    #HBox2{
+    display: none;
+    }
+    .repeat{
+    color:red;
 
 
-        }
+    }
+    #repeat_div{
+    margin-top: 50px;
+    margin-left: 48px;
+    }
+    #commit_div{
+    font-size:20px;
+    padding-top: 40px;
+    padding-left: 143px;
+    }
+    .second{
+    display:none;
+    }
+@};
 
-        .title{
-            font-size:28px;
-            text-align:center;
-            display:block;
-            position: relative;
-            top:50%;
-            transform:translateY(-50%);
-
-
-        }
-        .main{
-            margin-left:20px;
-
-            height:500px;
-            margin-right:20px;
-        }
-
-        li{
-            float: left;
-            list-style:none
-
-        }
-        .bread{
-            width:100%;
-            background-color:yellow;
-            height:50px;
-        }
-
-        .tabs{
-            margin-top:15px;
-            height:74px;
-        }
-        .tab_list{
-            height:42px;
-            border-bottom:5px solid #CC0033;
-            padding:0px;
-        }
-
-        .tab_list li{
-            padding:5px;
-            padding-bottom: 0px;
-            padding:0px;
-        }
-
-        .tab_list li a{
-            position: relative;
-            background: #ddd;
-            padding: 10px 50px;
-            float: left;
-            text-decoration: none;
-            color: #444;
-            text-shadow: 0 1px 0 rgba(255, 255, 255, .8);
-            border-radius: 20px 20px 0 0;
-            box-shadow: 0 2px 2px rgba(0, 0, 0, .4);
-
-
-        }
-
-        .current a{
-            outline: 0;
-            background: #fff;
-            z-index: 4;
-        }
-
-        .new_button{
-            width:100%;
-            height:82px;
-        }
-        #new{
-            float: right;
-            width:184px;
-            height:50px;
-        }
-
-        .ui{
-            padding:0px;
-        }
-        .title_th{
-            height:50px;
-            font-size:14px;
-        }
-        .table_div{
-            width:100%
-        }
-        .table{
-            width:100%;
-        }
-        th
-        {
-            border:1px solid black;
-        }
-
-        .article_id{
-            width:80px;
-        }
-        .article_content{
-            width:200px;
-        }
-        .count{
-            width:100px;
-        }
-        .clasify{
-            width:180px;
-        }
-        .tag{
-            width:140px;
-        }
-        .show{
-            width:80px;
-        }
-        .update_time{
-            width:160px;
-        }
-        .operation{
-            width:160px;
-        }
-        th{
-            height:50px
-        }
-        table {
-            border-collapse: collapse;
-        }
-        td{
-            border:1px solid black;
-            text-align:center;
-        }
-
-        #HBox{
-            display: none;
-        }
-        #HCloseBtn {
-            width: 20px;
-            height: 20px;
-            line-height: 20px;
-            display: inline-block;
-            cursor: pointer;
-            color: #fff;
-            text-align: center;
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            border-radius: 3px;
-        }
-
-        .list li strong {
-            width: 20%;
-            float: left;
-            display: inline-block;
-            margin-right: 10px;
-            text-align: right;
-        }
-        .list li {
-            width: 80%;
-            margin: 10px auto auto;
-            overflow: hidden;
-        }
-        .list {
-            padding: 25px 0;
-        }
-        strong{
-            strong
-        }
-        #HBox1{
-            display: none;
-        }
-        #HBox2{
-            display: none;
-        }
-        .repeat{
-            color:red;
-
-
-        }
-        #repeat_div{
-            margin-top: 50px;
-            margin-left: 48px;
-        }
-        #commit_div{
-            font-size:20px;
-            padding-top: 40px;
-            padding-left: 143px;
-        }
-        .second{
-            display:none;
-        }
-
-
-
-
-    </style>
-
-    <link rel="stylesheet" href="../css/animate.min.css">
-</head>
-<body>
-<div class="nevi">
-    <span class="title">吴忍的博客后台系统</span>
-</div>
-<div class="main">
-    <div class="bread">
-        <ul class="ui">
-            <li><a href="#">首页</a></li>
-            <li>&gt;</li>
-        </ul>
-    </div>
-
-    <div class="tabs">
-        <ul class="tab_list">
-            <li class="current"><a href="/article/index">文章列表</a></li>
-            <li> </li>
-            <li><a href="#">分类列表</a></li>
-            <li> </li>
-            <li><a href="/tag/index">标签列表</a></li>
-            <li> </li>
-        </ul>
-    </div>
+@var bodyPart={
 
     <div class="new_button">
         <button id="new">+ 新建分类</button>
@@ -325,8 +222,14 @@
 
 
     </div>
-</div>
 
+
+
+
+@};
+
+
+@var alertPart={
 <div id="HBox" class="animated">
     <div id="HTitle" style="padding:10px 45px 10px 12px;border-bottom:1px solid #ddd;background-color:#f2f2f2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
         新建/编辑标签
@@ -377,6 +280,13 @@
 
 </div>
 
+
+@};
+@var cssImport={
+<link rel="stylesheet" href="../css/animate.min.css">
+@};
+
+@var javaScript={
 <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="../js/jquery.hDialog.js"></script>
 <script type="text/javascript">
@@ -429,5 +339,8 @@
 
 
 </script>
-</body>
-</html>
+@};
+
+
+
+@include("layout.html",{"headCss":headCss,"bodyPart":bodyPart,"cssImport":cssImport,"alertPart":alertPart,"javaScript":javaScript,title:"分类首页","tagName":1}){}
