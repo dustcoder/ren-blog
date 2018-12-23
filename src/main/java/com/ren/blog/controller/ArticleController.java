@@ -29,6 +29,7 @@ public class ArticleController {
     @Autowired
     private TagService tagService;
 
+    //文章内容编辑页面
     @GetMapping("/article")
     public ModelAndView article(@RequestParam(value="articleId") Integer articleId){
         ModelAndView model = new ModelAndView();
@@ -56,10 +57,14 @@ public class ArticleController {
     }
 
 
+
+    //文章信息编辑页面
     @GetMapping("/article/index")
-    public ModelAndView createArticle(@RequestParam(value="articleId") String articleId){
+    public ModelAndView createArticle(@RequestParam(value="articleId",required=false ) Integer articleId){
+        //Article article = articleService.getArticle(articleId);
         ModelAndView model = new ModelAndView();
         model.setViewName("article_create.html");
+        //model.addObject("article",article);
         model.addObject("articleId",articleId);
         return model;
     }
@@ -86,7 +91,7 @@ public class ArticleController {
 
 
 
-    //新增文章内容
+    //新增文章信息
     @PostMapping("/article/saveOrUpdateArticle")
     @Transactional
     public ModelAndView saveOrUpdateArticle(HttpServletRequest request, HttpServletResponse response,
@@ -106,9 +111,7 @@ public class ArticleController {
         }catch (Exception e){
             e.printStackTrace();
         }
-        //更新成功跳转到文章列表页面
-        ModelAndView model = new ModelAndView();
-        model.setViewName("index.html");
-        return model;
+        ModelAndView view = new ModelAndView("redirect:/index");
+        return view;
     }
 }

@@ -46,7 +46,7 @@
       cata_id, `enable`, update_time, 
       update_by, create_time, create_by, 
       title, sub_cata_id, src_image, 
-      content,md_coontent)
+      content,md_content)
     values (#{articleId,jdbcType=INTEGER}, #{articleName,jdbcType=VARCHAR}, #{readCount,jdbcType=BIGINT}, 
       #{cataId,jdbcType=INTEGER}, #{enable,jdbcType=CHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{updateBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, 

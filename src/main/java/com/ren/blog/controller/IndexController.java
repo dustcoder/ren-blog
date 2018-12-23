@@ -26,26 +26,30 @@ public class IndexController {
 
     @GetMapping("/index")
     public ModelAndView index(){
-        //主页查找文章信息
-        List<Article> articleList = articleService.getArticleList();
-        //批量查询 一对多有什么好方法 todo
-        for(Article article : articleList){
-            List<TagArticle> tagArticleList =  tagService.getTagArticleList(article.getArticleId());
-            String tagArticleName = "";
-            for(TagArticle tagArticle : tagArticleList){
-                tagArticleName = tagArticleName + " " +  tagArticle.getTagName() ;
-            }
-            article.setTagName(tagArticleName);
-            if(article.getCataId() != null && article.getSubCataId() != null){
-                article.setCataName(article.getFirstCateName() + "-" + article.getSecCataName());
-            }else {
-                article.setCataName(article.getFirstCateName() == null ? article.getSecCataName() : article.getFirstCateName());
-            }
-        }
         ModelAndView view = new ModelAndView();
         view.setViewName("index.html");
-        view.addObject("articleList",articleList);
-        view.addObject("money","1314");
+        try{
+            //主页查找文章信息
+            List<Article> articleList = articleService.getArticleList();
+            //批量查询 一对多有什么好方法 todo
+            for(Article article : articleList){
+                List<TagArticle> tagArticleList =  tagService.getTagArticleList(article.getArticleId());
+                String tagArticleName = "";
+                for(TagArticle tagArticle : tagArticleList){
+                    tagArticleName = tagArticleName + " " +  tagArticle.getTagName() ;
+                }
+                article.setTagName(tagArticleName);
+                if(article.getCataId() != null && article.getSubCataId() != null){
+                    article.setCataName(article.getFirstCateName() + "-" + article.getSecCataName());
+                }else {
+                    article.setCataName(article.getFirstCateName() == null ? article.getSecCataName() : article.getFirstCateName());
+                }
+            }
+            view.addObject("articleList",articleList);
+        }catch (Exception e){
+            e.printStackTrace();
+            view.addObject("articleList",null);
+        }
         return view;
     }
 }
