@@ -47,3 +47,5 @@ pagehelper:
 
 beetl:
     suffix: html
+img:
+    location: C:\Users\wuren\IdeaProjects\ren-blog\src\main\resources\static\upload
