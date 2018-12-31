@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>吴忍的博客后台系统</title>
-    <script src="../js/jquery-3.3.1.js"></script>
+    <title>Dust's Blog</title>
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/jquery.md5.js" ></script>
     <style>
         .nevi{
             height:100px;
@@ -91,19 +92,34 @@
 <script type="text/javascript">
     //获取验证码
     function getVerify(){
-        document.getElementById("img").src =   "http://localhost:8080/user/getVerify?"+Math.random();
+        document.getElementById("img").src =   "/user/getVerify?"+Math.random();
     }
 
     function login() {
-        $("#sub_form").submit();
+        // $("#sub_form").submit();
+        var password = $("#pwd").val();
+        $("#realPwd").val($.md5(password));
+        $.ajax({
+            type: 'post',
+            url: '/user/login',
+            data:$('#sub_form').serialize(),
+            success: function(result){
+                if(result == 'true'){
+                    window.location.href = "/index";
+                }
+
+            }
+        });
+
     }
 </script>
 <div class="nevi">
-    <span class="title">吴忍的博客后台系统</span>
+    <span class="title">Dust's Blog</span>
 </div>
 <div class="login">
     <table class="table" border="0">
         <form id="sub_form" action="http://localhost:8080/user/login" >
+            <input type="hidden" id="realPwd" name="pwd"/>
         <tbody>
         <tr>
             <td> 账号 </td>
@@ -111,7 +127,7 @@
         </tr>
         <tr>
             <td> 密码 </td>
-            <td><input type="password" class="pwd" name="pwd" /></td>
+            <td><input type="password" class="pwd" id="pwd"/></td>
         </tr>
         <tr>
             <td> 验证码 </td>

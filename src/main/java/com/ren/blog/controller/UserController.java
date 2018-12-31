@@ -53,6 +53,7 @@ public class UserController {
             //生成验证码 todo
 
             view.setViewName("login.html");
+            view.addObject("PATH","");
             return view;
         }catch (Exception e){
             e.printStackTrace();
@@ -79,8 +80,9 @@ public class UserController {
     }
 
 
-    @RequestMapping("/login")
-    public ModelAndView login(HttpServletRequest request,HttpServletResponse response){
+    @PostMapping("/login")
+    @ResponseBody
+    public String login(HttpServletRequest request,HttpServletResponse response){
         try{
             //校验验证码
             String checkCode = request.getParameter("checkCode");
@@ -91,11 +93,12 @@ public class UserController {
             String userName = request.getParameter("userName");
             String pwd = request.getParameter("pwd");
 
-            if("wuren".equals(userName) && "qiuqiu1314".equals(pwd)){
+//            String smi=convertMD5(pwd);
+
+            if("wuren".equals(userName) && "c154b3c615c452f74494987653cd6d30".equals(pwd)){
                 request.getSession().setAttribute("userName",userName);
                 request.getSession().setAttribute("pwd",pwd);
-                ModelAndView view = new ModelAndView("redirect:/index");
-                return view;
+                return  "true";
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -113,6 +116,19 @@ public class UserController {
         ModelAndView view = new ModelAndView();
         view.setViewName("login.html");
         return view;
+    }
+
+    /**
+     * 加密解密算法 执行一次加密，两次解密
+     */
+    public static String convertMD5(String inStr){
+
+        char[] a = inStr.toCharArray();
+        for (int i = 0; i < a.length; i++){
+            a[i] = (char) (a[i] ^ 't');
+        }
+        String s = new String(a);
+        return s;
     }
 
 

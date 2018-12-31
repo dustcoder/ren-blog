@@ -15,7 +15,7 @@
             display:block;
             position: relative;
             top:50%;
-            transform:translateY(-50%);
+
         }
         .main{
             margin-left:20px;
@@ -75,6 +75,12 @@
 		.bread{
 		  color:#444	
 		}
+        .blog_title{
+            float: left;
+        }
+        #loginOut{
+            float:right;
+        }
 
         ${headCss}
     </style>
@@ -82,7 +88,8 @@
 </head>
 <body>
 <div class="nevi">
-    <span class="title">Dust's  Blog</span>
+    <div class="blog_title"><span class="title">Dust's  Blog</span></div>
+    <div id="loginOut"><a href="/user/loginOut">退出</a></div>
 </div>
 <div class="main">
     <div class="bread">

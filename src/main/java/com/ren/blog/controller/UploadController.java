@@ -5,6 +5,7 @@ package com.ren.blog.controller;
  *@date: 21:15 2018/11/18
  */
 
+import com.ren.blog.util.UuidUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ResourceLoader;
@@ -93,6 +94,7 @@ public class UploadController {
         try {
             request.setCharacterEncoding( "utf-8" );
             response.setHeader( "Content-Type" , "text/html" );
+
 //            String rootPath = request.getSession().getServletContext().getRealPath("/upload/");
 //            System.out.println(rootPath);
 
@@ -115,9 +117,17 @@ public class UploadController {
 //            fout.write(attach.getBytes());
 //            fout.close();
 
-            Files.copy(attach.getInputStream(), Paths.get(ROOT, attach.getOriginalFilename()));
+            String fileName = attach.getOriginalFilename();
+            int pot = fileName.lastIndexOf(".");
+            String exName = "";
+            if(pot != -1){
+                exName = fileName.substring(pot);
+            }
+            String newName = UuidUtils.getUUID() + exName;
+
+            Files.copy(attach.getInputStream(), Paths.get(ROOT, newName));
             //下面response返回的json格式是editor.md所限制的，规范输出就OK
-            response.getWriter().write( "{\"success\": 1, \"message\":\"上传成功\",\"url\":\"/" + attach.getOriginalFilename() + "\"}" );
+            response.getWriter().write( "{\"success\": 1, \"message\":\"上传成功\",\"url\":\"/" + newName + "\"}" );
         } catch (Exception e) {
             try {
                 response.getWriter().write( "{\"success\":0}" );

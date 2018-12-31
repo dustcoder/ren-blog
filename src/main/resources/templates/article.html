@@ -11,16 +11,12 @@
                 height: 40px;
                 margin-left: 100px;
             }
-
-
         </style>
     </head>
     <body>
         <form action="/article/add" method="post" id="formBlog">
-
             <input value="${articleId}"  type="hidden" name="articleId"/>
             <textarea id="blog_md" name="mdContent" value="" style="display: none;"></textarea>
-
             <div class="editormd" id="test-editormd">
 		  <textarea class="editormd-markdown-textarea" name="test-editormd-markdown-doc">${mdContent}</textarea>
 		  <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
@@ -41,7 +37,7 @@
                     width   : "90%",
                     height  : 640,
                     syncScrolling : "single",
-                    path    : "http://localhost:8080/editor/lib/",
+                    path    : "../editor/lib/",
                     imageUpload : true,
                     imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
                     imageUploadURL : "/uploadfile",
