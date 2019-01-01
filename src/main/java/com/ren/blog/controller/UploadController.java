@@ -31,8 +31,6 @@ public class UploadController {
 
     private final ResourceLoader resourceLoader;
 
-//    public static final String ROOT = "C:\\Users\\wuren\\IdeaProjects\\ren-blog\\src\\main\\resources\\static\\upload";
-
     @Value("${img.location}")
     private String ROOT;
     @Autowired

@@ -10,6 +10,7 @@ import com.ren.blog.model.UserDomain;
 import com.ren.blog.user.UserService;
 import com.ren.blog.util.RandomValidateCodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,6 +28,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Value("${web.path}")
+    private String PATH;
 
     @ResponseBody
     @PostMapping("/add")
@@ -51,9 +55,9 @@ public class UserController {
         try{
             ModelAndView view = new ModelAndView();
             //生成验证码 todo
-
             view.setViewName("login.html");
-            view.addObject("PATH","");
+            view.addObject("PATH",PATH);
+//            view.addObject("PATH",);
             return view;
         }catch (Exception e){
             e.printStackTrace();

@@ -57,3 +57,5 @@ beetl:
 img:
     location: /root/app/image
 
+web:
+    path: http://154.91.201.214:8080

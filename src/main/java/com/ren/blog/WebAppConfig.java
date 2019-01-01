@@ -17,8 +17,6 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
     /**
      * 在配置文件中配置的文件保存路径
      */
-    @Value("${img.location}")
-    private String location;
 
     @Bean
     public MultipartConfigElement multipartConfigElement(){
