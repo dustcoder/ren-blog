@@ -1,227 +1,194 @@
 @var headCss={
-    .new_button{
-    width:100%;
-    height:82px;
-    }
-    #new{
-    float: right;
-    width:184px;
-    height:50px;
-    }
-
-    .ui{
-    padding:0px;
-    }
-    .title_th{
-    height:50px;
-    font-size:14px;
-    }
-    .table_div{
-    width:100%
-    }
-    .table{
-    width:100%;
-    }
-    th
-    {
-    border:1px solid black;
-    }
-
-    .article_id{
-    width:80px;
-    }
-    .article_content{
-    width:200px;
-    }
-    .count{
-    width:100px;
-    }
-    .clasify{
-    width:180px;
-    }
-    .tag{
-    width:140px;
-    }
-    .show{
-    width:80px;
-    }
-    .update_time{
-    width:160px;
-    }
-    .operation{
-    width:160px;
-    }
-    th{
-    height:50px
-    }
-    table {
-    border-collapse: collapse;
-    }
-    td{
-    border:1px solid black;
-    text-align:center;
-    }
-
-    #HBox{
-    display: none;
-    }
-    #HCloseBtn {
-    width: 20px;
-    height: 20px;
-    line-height: 20px;
-    display: inline-block;
-    cursor: pointer;
-    color: #fff;
-    text-align: center;
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    border-radius: 3px;
-    }
-
-    .list li strong {
-    width: 20%;
-    float: left;
-    display: inline-block;
-    margin-right: 10px;
-    text-align: right;
-    }
-    .list li {
-    width: 80%;
-    margin: 10px auto auto;
-    overflow: hidden;
-    }
-    .list {
-    padding: 25px 0;
-    }
-    strong{
-    strong
-    }
-    #HBox1{
-    display: none;
-    }
-    #HBox2{
-    display: none;
-    }
-    .repeat{
-    color:red;
+.new_button{
+width:100%;
+height:82px;
+}
 
 
-    }
-    #repeat_div{
-    margin-top: 50px;
-    margin-left: 48px;
-    }
-    #commit_div{
-    font-size:20px;
-    padding-top: 40px;
-    padding-left: 143px;
-    }
-    .second{
-    display:none;
-    }
+.ui{
+padding:0px;
+}
+
+.table_div{
+width:100%;
+margin-top: 40px;
+}
+
+
+
+
+#HBox{
+display: none;
+}
+#HCloseBtn {
+width: 20px;
+height: 20px;
+line-height: 20px;
+display: inline-block;
+cursor: pointer;
+color: #fff;
+text-align: center;
+position: absolute;
+top: 8px;
+right: 8px;
+border-radius: 3px;
+}
+
+.list li strong {
+width: 20%;
+float: left;
+display: inline-block;
+margin-right: 10px;
+text-align: right;
+}
+.list li {
+width: 80%;
+margin: 10px auto auto;
+overflow: hidden;
+}
+.list {
+padding: 25px 0;
+}
+strong{
+strong
+}
+#HBox1{
+display: none;
+}
+#HBox2{
+display: none;
+}
+.repeat{
+color:red;
+
+
+}
+#repeat_div{
+margin-top: 50px;
+margin-left: 48px;
+}
+#commit_div{
+font-size:20px;
+padding-top: 40px;
+padding-left: 143px;
+}
+.second{
+display:none;
+}
 @};
 
 @var bodyPart={
 
-    <div class="new_button">
-        <button id="new">+ 新建分类</button>
+<!--<div class="new_button">-->
+    <!---->
+    <!--<button  type="button"  class="btn btn-primary" data-toggle="modal" data-target="#myModal">+ 新建分类</button>-->
+
+<!--</div>-->
+
+<form class="form-inline" role="form" action="/cata/index">
+    <div class="form-group">
+        <label>分类名</label>
+        <input type="text" value="${cataName}" class="form-control" placeholder="分类名" name="cataName"/>
+    </div>
+    <div class="form-group">
+        <label for="name">是否显示</label>
+        <input type="hidden" value="${enable}" id="enable">
+        <select class="form-control" name="enable">
+            <option value="" ${(enable !="1" && enable !="0")?"selected='selected'":""} >全部</option>
+            <option value="1" ${enable =="1"?"selected='selected'":""}>是</option>
+            <option value="0" ${enable =="0"?"selected='selected'":""}>否</option>
+        </select>
 
     </div>
-    <div class="table_div">
-        <table class="table">
-            <tr class="title_th" id="title_th">
-                <th class="article_id">分类id</th>
-                <th class="article_content">分类级别</th>
-                <th class="article_content">分类名称</th>
-                <th class="count">其下二级分类数量</th>
-                <th class="clasify">排序</th>
-                <th class="tag">是否显示</th>
-                <th class="operation" colspan="2">操作</th>
-            </tr>
-            <tr class="first" id="01">
-                <td>01</td>
-                <td>一级</td>
-                <td>技术文章</td>
-                <td>3</td>
-                <td>1</td>
-                <td>
-                    是
-                </td>
-                <td>
-                    <a href="/article/index">编辑</a>
-                    <a href="#">删除</a>
-                </td>
-                <td>
-                    <a href="#" id="showOrHideSecondButton" class="showOrHideSecondButton">查看二级分类&#9660 </a>
-                    <a href="#">编辑二级分类</a>
-                </td>
-            </tr>
-
-            <tr class="second" id="01-01">
-                <td>01-01</td>
-                <td>二级</td>
-                <td>Hadoop</td>
-                <td>-</td>
-                <td>1</td>
-                <td>
-                    是
-                </td>
-                <td>
-                    <a href="/article/index">编辑</a>
-                    <a href="#">删除</a>
-                </td>
-                <td>
-                    -
-                </td>
-            </tr>
+    <button type="submit" class="btn btn-default" style="margin-left: 70px;">查   找</button>
+    <button  type="button" style="float: right;"  class="btn btn-primary" data-toggle="modal" data-target="#myModal">+ 新建分类</button>
 
 
-            <tr class="first" id="02">
-                <td>02</td>
-                <td>一级</td>
-                <td>技术文章</td>
-                <td>3</td>
-                <td>1</td>
-                <td>
-                    是
-                </td>
-                <td>
-                    <a href="/article/index">编辑</a>
-                    <a href="#">删除</a>
-                </td>
-                <td>
-                    <a href="#" id="showOrHideSecondButton" class="showOrHideSecondButton">查看二级分类&#9660 </a>
-                    <a href="#">编辑二级分类</a>
-                </td>
-            </tr>
 
-            <tr class="second" id="02-01">
-                <td>02-01</td>
-                <td>二级</td>
-                <td>Hadoop</td>
-                <td>-</td>
-                <td>1</td>
-                <td>
-                    是
-                </td>
-                <td>
-                    <a href="/article/index">编辑</a>
-                    <a href="#">删除</a>
-                </td>
-                <td>
-                    -
-                </td>
-            </tr>
+</form>
+
+<div class="table_div">
+    <table class="table table-hover">
+        <tr>
+        <th>分类id</th>
+        <th>分类名称</th>
+        <th>排序</th>
+        <th>是否显示</th>
+        <th>操作</th>
+        </tr>
+
+        @for(cata in pageInfo.list){
+        <tr>
+            <td>${cata.cataId}</td>
+            <td>${cata.cataName}</td>
+            <td>${cata.sequence}</td>
+            <td>
+                ${cata.enable == "1"?"是":"否"}
+            </td>
+            <td>
+                <a href="#" class="updateButton" onclick="getUpdateData(${cata.cataId})">编辑</a>
+                <a href="#">删除</a>
+            </td>
+        </tr>
+        @}
+
+
+    </table>
+
+    <!-- 分页导航 -->
+    <nav >
+        <ul class="pagination" style=" margin-left: 250px;margin-top: 40px;">
+            <li><a href="/cata/index?pageNum=1&enable=${enable}&cataName=${cataName}">首页</a></li>
+            @if(pageInfo.pageNum<=1){
+            <li><a href="#">上一页</a></li>
+            @}
+            @if(pageInfo.pageNum>1){
+            <li><a href="/cata/index?pageNum=${pageNum -1}&enable=${enable}&cataName=${cataName}">上一页</a></li>
+            @}
+
+
+            @for(item in pageInfo.navigatepageNums){
+               @if(item == pageInfo.pageNum){
+                 <li class="active"><a href="javascript:void(0)">${item}</a></li>
+               @}
+                @if(item != pageInfo.pageNum){
+                <li ><a href="/cata/index?pageNum=${item}&enable=${enable}&cataName=${cataName}">${item}</a></li>
+                @}
+            @}
+
+            @if(pageInfo.pageNum< pageInfo.pages){
+            <li><a href="/cata/index?pageNum=${pageNum +1}&enable=${enable}&cataName=${cataName}">下一页</a></li>
+            @}
+
+            @if(pageInfo.pageNum == pageInfo.pages){
+            <li><a href="javascript:void(0)">下一页</a></li>
+            @}
+
+            @if(pageInfo.pageNum<= pageInfo.pages){
+            <li><a href="/cata/index?pageNum=${pageInfo.pages}&enable=${enable}&cataName=${cataName}">末页</a></li>
+            @}
 
 
 
 
 
-        </table>
+
+            <!--<li><a href="#">上一页</a></li>-->
+            <!--<li><a href="#">...</a></li>-->
+            <!--<li><a href="#">3</a></li>-->
+            <!--<li  class="active"><a href="#">4</a></li>-->
+            <!--<li><a href="#">5</a></li>-->
+            <!--<li><a href="#">...</a></li>-->
+            <!--<li class="disabled"><a href="#">下一页</a></li>-->
 
 
-    </div>
+
+        </ul>
+
+    </nav>
+
+
+</div>
 
 
 
@@ -230,67 +197,146 @@
 
 
 @var alertPart={
-<div id="HBox" class="animated">
-    <div id="HTitle" style="padding:10px 45px 10px 12px;border-bottom:1px solid #ddd;background-color:#f2f2f2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
-        新建/编辑标签
-    </div>
-    <form action="" method="post" onsubmit="return false;">
-        <ul class="list">
-            <li>
-                <strong>标签id</strong>
-                <div class="fl"><input type="text" name="nickname" value="" class="ipt nickname"></div>
-            </li>
-            <li>
-                <strong>标签名称</strong>
-                <div class="fl"><input type="text" name="phone" value="" class="ipt phone"></div>
-            </li>
-            <li>
-                <strong>排序</strong>
-                <div class="fl"><input type="text" name="email" value="" class="ipt email"></div>
-            </li>
-            <li>
-                <strong>是否显示</strong>
-                <div class="fl">
-                    <label class="mr10"><input type="radio" name="sex" value="1">男</label>
-                    <label class="mr10"><input type="radio" name="sex" value="2">女</label>
-                </div>
-            </li>
-            <li><input type="submit" value="取消" ></li>
-            <li><input type="submit" value="保存" class="submitBtn"></li>
-        </ul>
-    </form>
-    <a id="HCloseBtn" title="关闭" style="background-color:#ccc;"><span>×</span></a>
-</div>
-<div id="HBox2" >
-    <div id="repeat_div">
-        <span class="repeat">标签名称重复，请尝试新的标签名称</span>
-    </div>
-    <div id="commit_div">
-        <button class="commit" >确定</button>
+
+<!--新建/编辑分类-->
+<div class="modal" id="myModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4>新建/编辑分类</h4>
+
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="cataform">
+                    <input name="cataId" type="hidden" id="cataId"/>
+
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">分级名称</label>
+                        <div class="col-xs-8">
+                            <input class="form-control" name="cataName" type="text" id="cataName"/>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">排序</label>
+                        <div class="col-xs-8">
+                            <input class="form-control" type="text" name="sequence" id="sequence"/>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">是否显示</label>
+                        <div class="col-xs-8">
+                            <!--<input class="form-control" type="text"/>-->
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="enable" value="1" id="yes"> 是
+                                </label>
+
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="enable" value="0" checked id="no"> 否
+                                </label>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </form>
+
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" type="button" data-dismiss="modal">关闭</button>
+                <button id="cata-save" class="btn btn-primary" type="button">保存</button>
+            </div>
+        </div>
     </div>
 
 </div>
-<div id="HBox3" >
-    <div id="repeat_div">
-        <span class="repeat">标签不能删除，建议做不显示处理</span>
-    </div>
-    <div id="commit_div">
-        <button class="commit" onclick="close()" >确定</button>
-    </div>
 
+<div class="alert alert-danger alert-dismissable hide" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>这里是错误信息</strong>
 </div>
 
 
 @};
 @var cssImport={
 <link rel="stylesheet" href="../css/animate.min.css">
+<link rel='stylesheet' href='../bootstrap/css/bootstrap.min.css' />
 @};
 
 @var javaScript={
 <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="../js/jquery.hDialog.js"></script>
+<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
+    
+    function getUpdateData(cataId) {
+        // 查询分类数据
+        $.ajax({
+            type: 'get',
+            url: '/cata/getCataById',
+            data:{cataId:cataId},
+            success: function(result){
+                $("#cataName").val(result.data.cataName);
+                $("#sequence").val(result.data.sequence);
+                $("#cataId").val(result.data.cataId);
+                if(result.data.enable == "0"){
+                    $("#no").attr("checked","checked");
+                    $("#yes").removeAttr("checked");
+                }else {
+                    $("#yes").attr("checked","checked");
+                    $("#no").removeAttr("checked");
+                }
+
+            }
+        });
+
+        $('#myModal').modal({
+            backdrop:"static"
+        });
+
+
+        
+    }
+
+
+    $('#cata-save').click(function() {
+
+        $.ajax({
+            type: 'post',
+            url: '/cata/saveOrUpdateCata',
+            data:$('#cataform').serialize(),
+            success: function(result){
+                if(result.code == 'success'){
+                    // alert("保存成功");
+                    $('.alert-danger').removeClass('hide').addClass('in');
+                    window.location.href = "/cata/index";
+                }else{
+                    alert("保存失败");
+                }
+
+            }
+        });
+
+
+    });
+
+
+
     $(function(){
+
+
         //新建编辑弹框
         //$('#new').hDialog({'box':'#HBox',title:'新建/编辑标签',height:350,width:350});
         //$('#new').hDialog({'box':'#HBox2',title:'提示',height:350,width:350});

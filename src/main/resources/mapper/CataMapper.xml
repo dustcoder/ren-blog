@@ -66,7 +66,49 @@
     from cata
   </select>
 
-  <select id="getCataList" resultType="java.util.Map" parameterType="java.lang.String">
-  SELECT cata_id,cata_name FROM cata WHERE CATA_LEVEL = #{cataLevel,jdbcType=VARCHAR}
+  <select id="getCataList" resultMap="BaseResultMap" parameterType="com.ren.blog.model.Cata">
+   select cata_id, cata_level, cata_name, sub_cata_count, `sequence`, `enable`, parent_cata
+    from cata where 1=1
+    <if test="enable =='0'">
+      and enable = #{enable,jdbcType=CHAR}
+    </if>
+    <if test="enable =='1'">
+      and enable = #{enable,jdbcType=CHAR}
+    </if>
+    <if test="cataName != null and cataName != ''">
+      and cata_name = #{cataName,jdbcType=VARCHAR}
+    </if>
 </select>
+
+
+  <insert id="saveOrUpdateCata" parameterType="com.ren.blog.model.Cata">
+  <selectKey keyProperty="count" resultType="int" order="BEFORE">
+    select count(*) from cata where cata_id = #{cataId}
+  </selectKey>
+  <if test="count > 0">
+    update cata
+    <set>
+      <if test="cataName!= null" >
+        cata_name= #{cataName},
+      </if>
+      <if test="sequence!= null" >
+        sequence= #{sequence},
+      </if>
+      <if test="enable!= null" >
+        enable= #{enable}
+      </if>
+    </set>
+    <where>
+      cata_id = #{cataId}
+    </where>
+  </if>
+  <if test="count==0">
+    insert into cata (cata_id, cata_level, cata_name,
+    sub_cata_count, `sequence`, `enable`,
+    parent_cata)
+    values (#{cataId,jdbcType=INTEGER}, #{cataLevel,jdbcType=CHAR}, #{cataName,jdbcType=VARCHAR},
+    #{subCataCount,jdbcType=INTEGER}, #{sequence,jdbcType=INTEGER}, #{enable,jdbcType=CHAR},
+    #{parentCata,jdbcType=INTEGER})
+  </if>
+  </insert>
 </mapper>

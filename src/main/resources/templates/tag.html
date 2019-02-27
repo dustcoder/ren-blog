@@ -13,55 +13,55 @@ height:50px;
 .ui{
 padding:0px;
 }
-.title_th{
-height:50px;
-font-size:14px;
-}
+<!--.title_th{-->
+<!--height:50px;-->
+<!--font-size:14px;-->
+<!--}-->
 .table_div{
 width:100%
 }
-.table{
-width:100%;
-}
-th
-{
-border:1px solid black;
-}
+<!--.table{-->
+<!--width:100%;-->
+<!--}-->
+<!--th-->
+<!--{-->
+<!--border:1px solid black;-->
+<!--}-->
 
-.article_id{
-width:80px;
-}
-.article_content{
-width:200px;
-}
-.count{
-width:100px;
-}
-.clasify{
-width:180px;
-}
-.tag{
-width:140px;
-}
-.show{
-width:80px;
-}
-.update_time{
-width:160px;
-}
-.operation{
-width:160px;
-}
-th{
-height:50px
-}
-table {
-border-collapse: collapse;
-}
-td{
-border:1px solid black;
-text-align:center;
-}
+<!--.article_id{-->
+<!--width:80px;-->
+<!--}-->
+<!--.article_content{-->
+<!--width:200px;-->
+<!--}-->
+<!--.count{-->
+<!--width:100px;-->
+<!--}-->
+<!--.clasify{-->
+<!--width:180px;-->
+<!--}-->
+<!--.tag{-->
+<!--width:140px;-->
+<!--}-->
+<!--.show{-->
+<!--width:80px;-->
+<!--}-->
+<!--.update_time{-->
+<!--width:160px;-->
+<!--}-->
+<!--.operation{-->
+<!--width:160px;-->
+<!--}-->
+<!--th{-->
+<!--height:50px-->
+<!--}-->
+<!--table {-->
+<!--border-collapse: collapse;-->
+<!--}-->
+<!--td{-->
+<!--border:1px solid black;-->
+<!--text-align:center;-->
+<!--}-->
 
 #HBox{
 display: none;
@@ -124,18 +124,17 @@ padding-left: 143px;
 @var bodyPart={
 
 <div class="new_button">
-    <button id="new">+ 新建标签</button>
-
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">+ 新建标签</button>
 </div>
 <div class="table_div">
-    <table class="table">
-        <tr class="title_th">
-            <th class="article_id">标签id</th>
-            <th class="article_content">标签名称</th>
-            <th class="count">排序</th>
-            <th class="clasify">是否显示</th>
-            <th class="tag">标签下文章数量</th>
-            <th class="operation">操作</th>
+    <table class="table table-hover">
+        <tr>
+            <th>标签id</th>
+            <th>标签名称</th>
+            <th>排序</th>
+            <th>是否显示</th>
+            <th>标签下文章数量</th>
+            <th>操作</th>
         </tr>
         <tr>
             <td>标签id</td>
@@ -146,7 +145,6 @@ padding-left: 143px;
             <td>
                 <a href="/article/index">编辑</a>
                 <a href="#">删除</a>
-
             </td>
         </tr>
 
@@ -155,6 +153,22 @@ padding-left: 143px;
 
     </table>
 
+    <!-- 分页导航 -->
+    <nav >
+        <ul class="pagination" style="    margin-left: 250px;margin-top: 40px;">
+            <li><a href="#">上一页</a></li>
+            <li><a href="#">...</a></li>
+            <li><a href="#">3</a></li>
+            <li  class="active"><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">...</a></li>
+            <li class="disabled"><a href="#">下一页</a></li>
+
+
+
+        </ul>
+
+    </nav>
 
 </div>
 
@@ -166,65 +180,133 @@ padding-left: 143px;
 
 @var alertPart={
 
-<div id="HBox" class="animated">
-    <div id="HTitle" style="padding:10px 45px 10px 12px;border-bottom:1px solid #ddd;background-color:#f2f2f2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
-        新建/编辑标签
-    </div>
-    <form action="" method="post" onsubmit="return false;">
-        <ul class="list">
-            <li>
-                <strong>标签id</strong>
-                <div class="fl"><input type="text" name="nickname" value="" class="ipt nickname"></div>
-            </li>
-            <li>
-                <strong>标签名称</strong>
-                <div class="fl"><input type="text" name="phone" value="" class="ipt phone"></div>
-            </li>
-            <li>
-                <strong>排序</strong>
-                <div class="fl"><input type="text" name="email" value="" class="ipt email"></div>
-            </li>
-            <li>
-                <strong>是否显示</strong>
-                <div class="fl">
-                    <label class="mr10"><input type="radio" name="sex" value="1">男</label>
-                    <label class="mr10"><input type="radio" name="sex" value="2">女</label>
-                </div>
-            </li>
-            <li><input type="submit" value="取消" ></li>
-            <li><input type="submit" value="保存" class="submitBtn"></li>
-        </ul>
-    </form>
-    <a id="HCloseBtn" title="关闭" style="background-color:#ccc;"><span>×</span></a>
-</div>
-<div id="HBox2" >
-    <div id="repeat_div">
-        <span class="repeat">标签名称重复，请尝试新的标签名称</span>
-    </div>
-    <div id="commit_div">
-        <button class="commit" >确定</button>
+<!--<div id="HBox" class="animated">-->
+    <!--<div id="HTitle" style="padding:10px 45px 10px 12px;border-bottom:1px solid #ddd;background-color:#f2f2f2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">-->
+        <!--新建/编辑标签-->
+    <!--</div>-->
+    <!--<form action="" method="post" onsubmit="return false;">-->
+        <!--<ul class="list">-->
+            <!--<li>-->
+                <!--<strong>标签id</strong>-->
+                <!--<div class="fl"><input type="text" name="nickname" value="" class="ipt nickname"></div>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<strong>标签名称</strong>-->
+                <!--<div class="fl"><input type="text" name="phone" value="" class="ipt phone"></div>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<strong>排序</strong>-->
+                <!--<div class="fl"><input type="text" name="email" value="" class="ipt email"></div>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<strong>是否显示</strong>-->
+                <!--<div class="fl">-->
+                    <!--<label class="mr10"><input type="radio" name="sex" value="1">男</label>-->
+                    <!--<label class="mr10"><input type="radio" name="sex" value="2">女</label>-->
+                <!--</div>-->
+            <!--</li>-->
+            <!--<li><input type="submit" value="取消" ></li>-->
+            <!--<li><input type="submit" value="保存" class="submitBtn"></li>-->
+        <!--</ul>-->
+    <!--</form>-->
+    <!--<a id="HCloseBtn" title="关闭" style="background-color:#ccc;"><span>×</span></a>-->
+<!--</div>-->
+<!--<div id="HBox2" >-->
+    <!--<div id="repeat_div">-->
+        <!--<span class="repeat">标签名称重复，请尝试新的标签名称</span>-->
+    <!--</div>-->
+    <!--<div id="commit_div">-->
+        <!--<button class="commit" >确定</button>-->
+    <!--</div>-->
+
+<!--</div>-->
+<!--<div id="HBox3" >-->
+    <!--<div id="repeat_div">-->
+        <!--<span class="repeat">标签不能删除，建议做不显示处理</span>-->
+    <!--</div>-->
+    <!--<div id="commit_div">-->
+        <!--<button class="commit" onclick="close()" >确定</button>-->
+    <!--</div>-->
+
+<!--</div>-->
+<!--新建编辑标签-->
+<div class="modal" id="myModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4>新建/编辑标签</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">标签名称</label>
+                        <div class="col-xs-8">
+                            <input class="form-control" type="text"/>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">排序</label>
+                        <div class="col-xs-8">
+                            <input class="form-control" type="text"/>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">是否显示</label>
+                        <div class="col-xs-8">
+                            <!--<input class="form-control" type="text"/>-->
+                            <div class="radio">
+                                <label>
+                                    <input type="radio"> 是
+                                </label>
+
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio"> 否
+                                </label>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </form>
+
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" type="button" data-dismiss="modal">关闭</button>
+                <button class="btn btn-primary" type="button">保存</button>
+            </div>
+        </div>
     </div>
 
-</div>
-<div id="HBox3" >
-    <div id="repeat_div">
-        <span class="repeat">标签不能删除，建议做不显示处理</span>
-    </div>
-    <div id="commit_div">
-        <button class="commit" onclick="close()" >确定</button>
-    </div>
+
 
 </div>
+
+
+
+
+
 @};
 
 @var cssImport={
 <link rel="stylesheet" href="../css/animate.min.css">
+<link rel='stylesheet' href='../bootstrap/css/bootstrap.min.css' />
 @};
 
 
 @var javaScript={
 <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="../js/jquery.hDialog.js"></script>
+<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     $(function(){
         //新建编辑弹框

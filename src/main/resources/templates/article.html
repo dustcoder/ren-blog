@@ -57,16 +57,6 @@
                 $('#btn-blog-save').click(function() {
 
                     $("#blog_md").val(md_edit.getMarkdown());//md格式内容，使用md的js获取
-                    // $("#blog_html").val(md_edit.getHTML());
-                    // $("#formBlog").ajaxSubmit({
-                    //     success : function(da) {
-                    //         $.scojs_message('发布成功', $.scojs_message.TYPE_OK);
-                    //
-                    //         location='/index';
-                    //         //todo 重定向
-                    //     }
-                    // });
-
                     $.ajax({
                         type: 'post',
                         url: '/article/add',

@@ -4,10 +4,19 @@ package com.ren.blog.service;/*
  *@date: 15:56 2018/12/15
  */
 
+import com.github.pagehelper.PageInfo;
+import com.ren.blog.model.Cata;
+
 import java.util.List;
 import java.util.Map;
 
 public interface CataService {
 
-    public List<Map<String,Object>> getCataList(String cataLevel);
+    PageInfo getCataList(Cata cata,Integer pageNum,Integer pageSize);
+
+    void saveOrUpdateCata(Cata cata);
+
+    Cata getCataById(String cataId);
+
+
 }

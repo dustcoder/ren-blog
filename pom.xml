@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId> com.ren</groupId>
+	<groupId>com.ren</groupId>
 	<artifactId>blog</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
@@ -70,7 +70,7 @@
 			<groupId>com.fasterxml.jackson.module</groupId>
 			<artifactId>jackson-module-parameter-names</artifactId>
 		</dependency>
-		<!-- 分页插件 -->
+		<!--&lt;!&ndash; 分页插件 &ndash;&gt;-->
 		<dependency>
 			<groupId>com.github.pagehelper</groupId>
 			<artifactId>pagehelper-spring-boot-starter</artifactId>
@@ -96,6 +96,15 @@
 			<artifactId>beetlsql</artifactId>
 			<version>2.10.39</version>
 		</dependency>
+
+		<!--添加依赖-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<!-- optional=true,依赖不会传递，该项目依赖devtools；之后依赖myboot项目的项目如果想要使用devtools，需要重新引入 -->
+			<optional>true</optional>
+		</dependency>
+
 
 	</dependencies>
 
@@ -132,11 +141,11 @@
 						<version>1.3.2</version>
 					</dependency>
 
-					<dependency>
-						<groupId>com.github.pagehelper</groupId>
-						<artifactId>pagehelper-spring-boot-starter</artifactId>
-						<version>1.1.1</version>
-					</dependency>
+					<!--<dependency>-->
+						<!--<groupId>com.github.pagehelper</groupId>-->
+						<!--<artifactId>pagehelper-spring-boot-starter</artifactId>-->
+						<!--<version>1.1.1</version>-->
+					<!--</dependency>-->
 
 				</dependencies>
 			</plugin>

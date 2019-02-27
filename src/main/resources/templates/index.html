@@ -13,76 +13,100 @@
     .ui{
     padding:0px;
     }
-    .title_th{
-    height:50px;
-    font-size:14px;
-    }
+    <!--.title_th{-->
+    <!--height:50px;-->
+    <!--font-size:14px;-->
+    <!--}-->
     .table_div{
-    width:100%
-    }
-    .table{
     width:100%;
+margin-top: 40px;
     }
-    th
-    {
-    border:1px solid black;
-    }
+    <!--.table{-->
+    <!--width:100%;-->
+    <!--}-->
+    <!--th-->
+    <!--{-->
+    <!--border:1px solid black;-->
+    <!--}-->
 
-    .article_id{
-    width:80px;
-    }
-    .article_content{
-    width:200px;
-    }
-    .count{
-    width:100px;
-    }
-    .clasify{
-    width:180px;
-    }
-    .tag{
-    width:140px;
-    }
-    .show{
-    width:80px;
-    }
-    .update_time{
-    width:160px;
-    }
-    .operation{
-    width:160px;
-    }
-    th{
-    height:50px;
-    background-color:#E4E4E4;
-    border-color:#D7D7D7
-    }
-    table {
-    border-collapse: collapse;
-    }
-    td{
-    border:1px solid black;
-    text-align:center;
-    background-color:#FBFBFB;
-    border-color:#D7D7D7
-    }
+    <!--.article_id{-->
+    <!--width:80px;-->
+    <!--}-->
+    <!--.article_content{-->
+    <!--width:200px;-->
+    <!--}-->
+    <!--.count{-->
+    <!--width:100px;-->
+    <!--}-->
+    <!--.clasify{-->
+    <!--width:180px;-->
+    <!--}-->
+    <!--.tag{-->
+    <!--width:140px;-->
+    <!--}-->
+    <!--.show{-->
+    <!--width:80px;-->
+    <!--}-->
+    <!--.update_time{-->
+    <!--width:160px;-->
+    <!--}-->
+    <!--.operation{-->
+    <!--width:160px;-->
+    <!--}-->
+    <!--th{-->
+    <!--height:50px;-->
+    <!--background-color:#E4E4E4;-->
+    <!--border-color:#D7D7D7-->
+    <!--}-->
+    <!--table {-->
+    <!--border-collapse: collapse;-->
+    <!--}-->
+    <!--td{-->
+    <!--border:1px solid black;-->
+    <!--text-align:center;-->
+    <!--background-color:#FBFBFB;-->
+    <!--border-color:#D7D7D7-->
+    <!--}-->
 
 @};
 
 @var bodyPart={
 
-    <div class="new_button">
-        <a href="/article/index"><button id="new">+ 新建文章</button></a>
+<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+
+<!--<div class="new_button">-->
+        <!--<a href="/article/index"><button  type="button"  class="btn btn-primary">+ 新建文章</button></a>-->
+    <!--</div>-->
+
+<form class="form-inline" role="form" action="">
+    <div class="form-group">
+        <label>分类名</label>
+        <input type="text" class="form-control" placeholder="分类名"/>
     </div>
+    <div class="form-group">
+        <label for="name">是否显示</label>
+        <select class="form-control">
+            <option>是</option>
+            <option>否</option>
+        </select>
+
+    </div>
+    <button type="submit" class="btn btn-default" style="margin-left: 70px;">查   找</button>
+    <!--<button  type="button" style="float: right;"  class="btn btn-primary" data-toggle="modal" data-target="#myModal">+ 新建分类</button>-->
+
+    <a href="/article/index"><button  type="button"  class="btn btn-primary" style="float: right;">+ 新建文章</button></a>
+
+
+</form>
     <div class="table_div">
-        <table class="table">
+        <table class="table table-hover">
             <tr class="title_th">
                 <th class="article_id">文章id</th>
                 <th class="article_content">文章名称</th>
                 <th class="count">阅读量</th>
                 <th class="clasify">所属分类</th>
                 <th class="tag">标签</th>
-                <th class="show">是否显示</th>
+                <th>是否显示</th>
                 <th class="update_time">更新时间</th>
                 <th class="operation">操作</th>
             </tr>
@@ -108,10 +132,27 @@
 
         </table>
 
+        <!-- 分页导航 -->
+        <nav >
+            <ul class="pagination" style="    margin-left: 250px;margin-top: 40px;">
+                <li><a href="#">上一页</a></li>
+                <li><a href="#">...</a></li>
+                <li><a href="#">3</a></li>
+                <li  class="active"><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">...</a></li>
+                <li class="disabled"><a href="#">下一页</a></li>
+
+
+
+            </ul>
+
+        </nav>
+
 
     </div>
 
 
 @};
 
-@include("layout.html",{"headCss":headCss,"bodyPart":bodyPart,"cssImport":"","alertPart":"","javaScript":"","tagName":0,title:"后台首页"}){}
+@include("layout.html",{"headCss":headCss,"bodyPart":bodyPart,"cssImport":"<link rel='stylesheet' href='../bootstrap/css/bootstrap.min.css' /> ","alertPart":"","javaScript":"","tagName":0,title:"后台首页"}){}

@@ -17,7 +17,10 @@ import java.io.IOException;
 public class LoginFilter implements Filter {
 
     String[] incluedUrls = new String[]{"/user/back","/js/jquery-3.3.1.js","/js/jquery.md5.js",
-            "/user/getVerify","/favicon.ico","/user/login"};
+            "/user/getVerify","/favicon.ico","/user/login","/bootstrap/js/bootstrap.min.js",
+            "/bootstrap/css/bootstrap.min.css","/bootstrap/fonts/glyphicons-halflings-regular.woff2",
+            "/bootstrap/fonts/glyphicons-halflings-regular.woff","/bootstrap/fonts/glyphicons-halflings-regular.ttf",
+    "/image/timg.jpg"};
 
     //标示符：表示当前用户未登录(可根据自己项目需要改为json样式)
     String NO_LOGIN = "您还未登录";

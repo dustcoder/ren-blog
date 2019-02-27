@@ -1,9 +1,11 @@
-<!DOCTYPE html>
+
 <html>
 <head>
     <title>Dust's Blog</title>
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css" />
     <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
     <script type="text/javascript" src="../js/jquery.md5.js" ></script>
+    <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
     <style>
         .nevi{
             height:100px;
@@ -20,67 +22,93 @@
 
 
         }
-        .login{
-            margin-top:40px;
-            margin-left:420px;
+        /*.login{*/
+            /*margin-top:40px;*/
+            /*margin-left:420px;*/
 
 
+        /*}*/
+        /*.login_lable{*/
+            /*font-size:14px;*/
+            /*text-align:right;*/
+        /*}*/
+
+        /*.summit_button{*/
+            /*background-color: #cccccc;*/
+            /*width:193px;*/
+            /*height:50px;*/
+            /*font-size:20px;*/
+            /*margin-top:0px;*/
+
+        /*}*/
+        /*.11{*/
+            /*text-align: center;*/
+            /*margin-top:60px;*/
+        /*}*/
+        /*input{*/
+            /*height:50px;*/
+
+        /*}*/
+        /*.pwd,.account{*/
+            /*width:300px;*/
+        /*}*/
+        /*.check_code{*/
+            /*width:164px;*/
+            /*height:50px;*/
+            /*vertical-align:middle;*/
+        /*}*/
+        /*.img{*/
+            /*width:132px;*/
+            /*height:50px;*/
+            /*text-align:right;*/
+            /*vertical-align:middle;*/
+
+
+        /*}*/
+        /*.summit{*/
+            /*margin-left:460px;*/
+            /*margin-top:60px;*/
+
+        /*}*/
+        /*#shuaxin{*/
+            /*color:	 #3366FF;*/
+        /*}*/
+        /*table{*/
+            /*border-collapse:separate;*/
+            /*border-spacing:25px;*/
+        /*}*/
+        /*td{*/
+            /*text-align: right;*/
+            /*font-size: 14px;*/
+        /*}*/
+        /*#img_td{*/
+            /*text-align: left;*/
+        /*}*/
+
+        html{
+            height: 100%;
         }
-        .login_lable{
-            font-size:14px;
-            text-align:right;
+        body{
+            /*background-image: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1514881472495&di=d9c07e5a09dd0cf25a9bf773b5d18591&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F12%2F34%2F73C58PIC8uq_1024.jpg);*/
+            background-image: url("../image/timg.jpg");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            height: 100%;
         }
-
-        .summit_button{
-            background-color: #cccccc;
-            width:193px;
-            height:50px;
-            font-size:20px;
-            margin-top:0px;
-
-        }
-        .11{
+        .col-center-block {
+            float: none;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20%;
             text-align: center;
-            margin-top:60px;
+            max-width: 333px;
         }
-        input{
-            height:50px;
-
+        .edit {
+            margin-top: 10px;
         }
-        .pwd,.account{
-            width:300px;
-        }
-        .check_code{
-            width:164px;
-            height:50px;
-            vertical-align:middle;
-        }
-        .img{
-            width:132px;
-            height:50px;
-            text-align:right;
-            vertical-align:middle;
-
-
-        }
-        .summit{
-            margin-left:460px;
-            margin-top:60px;
-
-        }
-        #shuaxin{
-            color:	 #3366FF;
-        }
-        table{
-            border-collapse:separate;
-            border-spacing:25px;
-        }
-        td{
-            text-align: right;
-            font-size: 14px;
-        }
-        #img_td{
-            text-align: left;
+        .textcolor{
+            color: white;
         }
 
 
@@ -113,33 +141,72 @@
 
     }
 </script>
-<div class="nevi">
-    <span class="title">Dust's Blog</span>
-</div>
-<div class="login">
-    <table class="table" border="0">
-        <form id="sub_form" action="http://localhost:8080/user/login" >
-            <input type="hidden" id="realPwd" name="pwd"/>
-        <tbody>
-        <tr>
-            <td> 账号 </td>
-            <td><input type="text" class="account" name="userName" /></td>
-        </tr>
-        <tr>
-            <td> 密码 </td>
-            <td><input type="password" class="pwd" id="pwd"/></td>
-        </tr>
-        <tr>
-            <td> 验证码 </td>
-            <td id="img_td"> <input type="text" class="check_code" placeholder="请输入验证码" name="checkCode" /> <img class="img" id="img" /> </td>
-            <td> <span id="shuaxin">刷新验证码</span> </td>
-        </tr>
-        </tbody>
-        </form>
-    </table>
-</div>
-<div class="summit">
-    <button class="summit_button" onclick="login()">登录</button>
+<!--<div class="nevi">-->
+    <!--<span class="title">Dust's Blog</span>-->
+<!--</div>-->
+<!--<div class="login">-->
+    <!--<table class="table" border="0">-->
+        <!--<form id="sub_form" action="http://localhost:8080/user/login" >-->
+            <!--<input type="hidden" id="realPwd" name="pwd"/>-->
+        <!--<tbody>-->
+        <!--<tr>-->
+            <!--<td> 账号 </td>-->
+            <!--<td><input type="text" class="account" name="userName" /></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td> 密码 </td>-->
+            <!--<td><input type="password" class="pwd" id="pwd"/></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td> 验证码 </td>-->
+            <!--<td id="img_td"> <input type="text" class="check_code" placeholder="请输入验证码" name="checkCode" /> <img class="img" id="img" /> </td>-->
+            <!--<td> <span id="shuaxin">刷新验证码</span> </td>-->
+        <!--</tr>-->
+        <!--</tbody>-->
+        <!--</form>-->
+    <!--</table>-->
+<!--</div>-->
+<!--<div class="summit">-->
+    <!--<button class="summit_button" onclick="login()">登录</button>-->
+<!--</div>-->
+<div class="container">
+    <div class="row row-centered">
+        <div class="col-xs-6 col-md-4 col-center-block">
+            <h1 class="textcolor">欢迎登录</h1>
+            <form  id="sub_form" action="http://localhost:8080/user/login">
+                <input type="hidden" id="realPwd" name="pwd"/>
+                <!-- 输入id -->
+                <div class="input-group input-group-md">
+                        <span class="input-group-addon" id="sizing-addon1">
+                            <i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" id="userid" name="userName" placeholder="请输入账号"/>
+                </div>
+                <!-- 输入密码 -->
+                <div class="edit input-group input-group-md">
+                        <span class="input-group-addon" id="sizing-addon2">
+                            <i class="glyphicon glyphicon-lock"></i></span>
+                    <input type="password" id="pwd"class="form-control" id="password"  placeholder="请输入密码"/>
+                </div>
+                <div class="edit input-group input-group-md">
+                        <span class="input-group-addon" id="sizing-addon3">
+                            <i class="glyphicon glyphicon-lock"></i></span>
+                    <input type="text" class="form-control col-xs-6" name="checkCode" placeholder="请输入验证码"/>
+                    <img class="img form-control col-xs-6" id="img" />
+                </div>
+                <br/>
+
+                <button type="button" class="btn btn-success btn-block" name="submit" value="登录" onclick="login()">登录</button>
+
+                <!--<a type="submit" class="btn btn-primary btn-block" href="register.html" style="margin-bottom: 20%">注册</a>-->
+            </form>
+        </div>
+
+
+
+    </div>
+
+
+
 </div>
 </body>
 </html>
