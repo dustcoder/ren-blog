@@ -27,11 +27,9 @@
     <result column="article_name" property="articleName" jdbcType="VARCHAR" />
     <result column="read_count" property="readCount" jdbcType="BIGINT" />
     <result column="cata_id" property="cataId" jdbcType="INTEGER" />
-    <result column="sub_cata_id" property="subCataId" jdbcType="INTEGER" />
     <result column="enable" property="enable" jdbcType="CHAR" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
-    <result column="first_cate_name" property="firstCateName" jdbcType="VARCHAR" />
-    <result column="sec_cata_name" property="secCataName" jdbcType="VARCHAR" />
+    <result column="cate_name" property="cateName" jdbcType="VARCHAR" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     <!--
@@ -88,22 +86,42 @@
     from article
   </select>
 
-  <select id="getArticleList" resultMap="articleMap">
-      SELECT
-      t.article_id,
-      t.article_name,
-      t.read_count,
-      t.cata_id,
-      t.sub_cata_id,
-      t.`enable`,
-      t.update_time,
-    c.cata_name first_cate_name,
-    ct.cata_name sec_cata_name
+  <select id="getArticleList" resultMap="articleMap" parameterType="com.ren.blog.model.Article">
+        SELECT
+      a.article_id,
+      a.article_name,
+      a.read_count,
+      t.tag_name,
+      c.cata_name,
+      a.`enable`,
+      a.update_time
   FROM
-      article t,
+      article a,
       cata c,
-     cata ct
-  where t.cata_id = c.cata_id
-  and t.sub_cata_id = ct.cata_id
+      tag t,
+      tag_article ta
+  WHERE
+      a.cata_id = c.cata_id
+  AND ta.article_id = a.article_id
+  AND t.tag_id = ta.tag_id
+    <if test="articleName != null and articleName != ''">
+  AND a.article_name LIKE concat(concat('%',#{articleName}),'%')
+    </if>
+    <if test="cataName != null and cataName != ''">
+      AND c.cata_name LIKE concat(concat('%',#{cataName}),'%')
+    </if>
+    <if test="tagName != null and tagName != ''">
+  AND t.tag_name LIKE concat(concat('%',#{tagName}),'%')
+    </if>
+    <if test="enable =='0'">
+  AND a.`enable` = #{enable,jdbcType=CHAR}
+    </if>
+    <if test="enable =='1'">
+      AND a.`enable` = #{enable,jdbcType=CHAR}
+    </if>
+
+
+
+
   </select>
 </mapper>

@@ -78,16 +78,26 @@ margin-top: 40px;
         <!--<a href="/article/index"><button  type="button"  class="btn btn-primary">+ 新建文章</button></a>-->
     <!--</div>-->
 
-<form class="form-inline" role="form" action="">
+<form class="form-inline" role="form" action="/index">
     <div class="form-group">
-        <label>分类名</label>
-        <input type="text" class="form-control" placeholder="分类名"/>
+        <label>文章名称</label>
+        <input type="text" class="form-control" placeholder="文章名" value="${article.articleName}" name="articleName"/>
+    </div>
+    <div class="form-group">
+        <label>分类名称</label>
+        <input type="text" class="form-control" placeholder="分类名" value="${article.cataName}" name="cataName"/>
+    </div>
+    <div class="form-group">
+        <label>标签名称</label>
+        <input type="text" class="form-control" placeholder="标签名" value="${article.tagName}" name="tagName"/>
     </div>
     <div class="form-group">
         <label for="name">是否显示</label>
+        <input type="hidden" value="${article.enable}" id="enable">
         <select class="form-control">
-            <option>是</option>
-            <option>否</option>
+            <option value="" ${(article.enable !="1" && article.enable !="0")?"selected='selected'":""} >全部</option>
+            <option value="1" ${article.enable =="1"?"selected='selected'":""}>是</option>
+            <option value="0" ${article.enable =="0"?"selected='selected'":""}>否</option>
         </select>
 
     </div>
@@ -111,7 +121,7 @@ margin-top: 40px;
                 <th class="operation">操作</th>
             </tr>
 
-            @for(article in articleList){
+            @for(article in pageInfo.list){
             <tr>
                 <td>${article.articleId}</td>
                 <td>${article.articleName}</td>
@@ -134,17 +144,36 @@ margin-top: 40px;
 
         <!-- 分页导航 -->
         <nav >
-            <ul class="pagination" style="    margin-left: 250px;margin-top: 40px;">
+            <ul class="pagination" style=" margin-left: 250px;margin-top: 40px;">
+                <li><a href="/index?pageNum=1&enable=${article.enable}&cataName=${article.cataName}&articleName=${article.articleName}">首页</a></li>
+                @if(pageInfo.pageNum<=1){
                 <li><a href="#">上一页</a></li>
-                <li><a href="#">...</a></li>
-                <li><a href="#">3</a></li>
-                <li  class="active"><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">...</a></li>
-                <li class="disabled"><a href="#">下一页</a></li>
+                @}
+                @if(pageInfo.pageNum>1){
+                <li><a href="/index?pageNum=${pageNum -1}&enable=${article.enable}&cataName=${article.cataName}&articleName=${article.articleName}">上一页</a></li>
+                @}
 
 
+                @for(item in pageInfo.navigatepageNums){
+                @if(item == pageInfo.pageNum){
+                <li class="active"><a href="javascript:void(0)">${item}</a></li>
+                @}
+                @if(item != pageInfo.pageNum){
+                <li ><a href="/index?pageNum=${item}&enable=${article.enable}&cataName=${article.cataName}&articleName=${article.articleName}">${item}</a></li>
+                @}
+                @}
 
+                @if(pageInfo.pageNum< pageInfo.pages){
+                <li><a href="/index?pageNum=${pageNum +1}&enable=${article.enable}&cataName=${article.cataName}&articleName=${article.articleName}">下一页</a></li>
+                @}
+
+                @if(pageInfo.pageNum == pageInfo.pages){
+                <li><a href="javascript:void(0)">下一页</a></li>
+                @}
+
+                @if(pageInfo.pageNum<= pageInfo.pages){
+                <li><a href="/index?pageNum=${pageInfo.pages}&enable=${article.enable}&cataName=${article.cataName}&articleName=${article.articleName}">末页</a></li>
+                @}
             </ul>
 
         </nav>

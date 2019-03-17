@@ -44,5 +44,5 @@ public interface ArticleMapper {
      */
     int updateByPrimaryKey(Article record);
 
-    List<Article> getArticleList();
+    List<Article> getArticleList(Article article);
 }

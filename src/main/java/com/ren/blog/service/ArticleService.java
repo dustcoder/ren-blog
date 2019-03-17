@@ -4,6 +4,7 @@ package com.ren.blog.service;/*
  *@date: 19:42 2018/12/15
  */
 
+import com.github.pagehelper.PageInfo;
 import com.ren.blog.model.Article;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public interface ArticleService {
 
     void updateArticle(Article article);
 
-    List<Article> getArticleList();
+    PageInfo getArticleList(Article article, Integer pageNum, Integer pageSize);
 
     Article getArticle(Integer articleId);
 

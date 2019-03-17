@@ -27,7 +27,6 @@ public class CataServiceImpl implements CataService{
         //使用PageInfo包装查询结果，只需要将pageInfo交给页面就可以
         PageInfo pageInfo = new PageInfo<Cata>(list);
         return pageInfo;
-//        return
     }
 
 

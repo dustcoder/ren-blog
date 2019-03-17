@@ -4,8 +4,11 @@ package com.ren.blog.service.impl;/*
  *@date: 19:43 2018/12/15
  */
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.ren.blog.dao.ArticleMapper;
 import com.ren.blog.model.Article;
+import com.ren.blog.model.Cata;
 import com.ren.blog.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +24,12 @@ public class ArticleServiceImpl implements ArticleService{
     }
 
     @Override
-    public List<Article> getArticleList() {
-        return articleMapper.getArticleList();
+    public PageInfo getArticleList(Article article,Integer pageNum,Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Article> list = articleMapper.getArticleList(article);
+        //使用PageInfo包装查询结果，只需要将pageInfo交给页面就可以
+        PageInfo pageInfo = new PageInfo<Article>(list);
+        return pageInfo;
     }
 
     @Autowired
