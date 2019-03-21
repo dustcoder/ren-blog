@@ -4,7 +4,9 @@ package com.ren.blog.service;/*
  *@date: 15:28 2018/12/12
  */
 
+import com.github.pagehelper.PageInfo;
 import com.ren.blog.model.Article;
+import com.ren.blog.model.Cata;
 import com.ren.blog.model.Tag;
 import com.ren.blog.model.TagArticle;
 
@@ -24,5 +26,12 @@ public interface TagService {
     void insertTagArticle(Integer articleId,String tagIds);
 
     List<TagArticle> getTagArticleList(Integer articleId);
+
+
+    PageInfo getTagList(Tag tag, Integer pageNum, Integer pageSize);
+
+    Tag getTagById(String tagId);
+
+
 
 }

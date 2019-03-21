@@ -113,11 +113,8 @@
     <if test="tagName != null and tagName != ''">
   AND t.tag_name LIKE concat(concat('%',#{tagName}),'%')
     </if>
-    <if test="enable =='0'">
-  AND a.`enable` = #{enable,jdbcType=CHAR}
-    </if>
-    <if test="enable =='1'">
-      AND a.`enable` = #{enable,jdbcType=CHAR}
+    <if test="enable != null and enable != ''">
+      and a.`enable` = #{enable,jdbcType=CHAR}
     </if>
 
 

@@ -94,7 +94,7 @@ margin-top: 40px;
     <div class="form-group">
         <label for="name">是否显示</label>
         <input type="hidden" value="${article.enable}" id="enable">
-        <select class="form-control">
+        <select class="form-control" name="enable">
             <option value="" ${(article.enable !="1" && article.enable !="0")?"selected='selected'":""} >全部</option>
             <option value="1" ${article.enable =="1"?"selected='selected'":""}>是</option>
             <option value="0" ${article.enable =="0"?"selected='selected'":""}>否</option>
@@ -128,7 +128,7 @@ margin-top: 40px;
                 <td>${article.readCount}</td>
                 <td>${article.tagName}</td>
                 <td>${article.cataName}</td>
-                <td>${article.enable}</td>
+                <td>${article.enable == "1"?"是":"否"}</td>
                 <td>${article.updateTime,dateFormat="yyyy-MM-dd HH:mm:ss"}</td>
                 <td>
                     <a href="#">编辑</a>

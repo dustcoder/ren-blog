@@ -45,7 +45,12 @@ public interface TagMapper {
      */
     int updateByPrimaryKey(Tag record);
 
-    List<Map<String,Object>> getTags();
+    List<Tag> getTagList(Tag tag);
 
     int deleteTagArticle(String articleId);
+
+    void addOrUpdateTag(Tag tag);
+
+
+    List<Map<String,Object>> getTags();
 }

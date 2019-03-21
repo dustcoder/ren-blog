@@ -69,10 +69,7 @@
   <select id="getCataList" resultMap="BaseResultMap" parameterType="com.ren.blog.model.Cata">
    select cata_id, cata_level, cata_name, sub_cata_count, `sequence`, `enable`, parent_cata
     from cata where 1=1
-    <if test="enable =='0'">
-      and enable = #{enable,jdbcType=CHAR}
-    </if>
-    <if test="enable =='1'">
+    <if test="enable != null and enable != ''">
       and enable = #{enable,jdbcType=CHAR}
     </if>
     <if test="cataName != null and cataName != ''">

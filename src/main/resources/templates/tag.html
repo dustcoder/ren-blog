@@ -123,10 +123,31 @@ padding-left: 143px;
 
 @var bodyPart={
 
-<div class="new_button">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">+ 新建标签</button>
-</div>
-<div class="table_div">
+<form class="form-inline" role="form" action="/tag/index">
+    <div class="form-group">
+        <label>标签名</label>
+        <input type="text" value="${tagName}" class="form-control" placeholder="分类名" name="tagName"/>
+    </div>
+    <div class="form-group">
+        <label for="name">是否显示</label>
+        <input type="hidden" value="${enable}" id="enable">
+        <select class="form-control" name="enable">
+            <option value="" ${(enable !="1" && enable !="0")?"selected='selected'":""} >全部</option>
+            <option value="1" ${enable =="1"?"selected='selected'":""}>是</option>
+            <option value="0" ${enable =="0"?"selected='selected'":""}>否</option>
+        </select>
+
+    </div>
+    <button type="submit" class="btn btn-default" style="margin-left: 70px;">查   找</button>
+    <button  type="button" style="float: right;"  class="btn btn-primary" data-toggle="modal" data-target="#myModal">+ 新建分类</button>
+
+
+
+</form>
+<!--<div class="new_button">-->
+    <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">+ 新建标签</button>-->
+<!--</div>-->
+<div class="table_div" style="    margin-top: 40px;">
     <table class="table table-hover">
         <tr>
             <th>标签id</th>
@@ -136,17 +157,32 @@ padding-left: 143px;
             <th>标签下文章数量</th>
             <th>操作</th>
         </tr>
+
+        @for(tag in pageInfo.list){
         <tr>
-            <td>标签id</td>
-            <td>标签名称</td>
-            <td>排序</td>
-            <td>是否显示</td>
-            <td>12</td>
+            <td>${tag.tagId}</td>
+            <td>${tag.tagName}</td>
+            <td>${tag.sequence}</td>
+            <td> ${tag.enable == "1"?"是":"否"}</td>
+            <td></td>
             <td>
-                <a href="/article/index">编辑</a>
-                <a href="#">删除</a>
+            <a class="updateButton" href="#" onclick="getUpdateData(${tag.tagId})">编辑</a>
+            <a href="#">删除</a>
             </td>
         </tr>
+        @}
+
+        <!--<tr>-->
+            <!--<td>标签id</td>-->
+            <!--<td>标签名称</td>-->
+            <!--<td>排序</td>-->
+            <!--<td>是否显示</td>-->
+            <!--<td>12</td>-->
+            <!--<td>-->
+                <!--<a href="/article/index">编辑</a>-->
+                <!--<a href="#">删除</a>-->
+            <!--</td>-->
+        <!--</tr>-->
 
 
 
@@ -155,21 +191,39 @@ padding-left: 143px;
 
     <!-- 分页导航 -->
     <nav >
-        <ul class="pagination" style="    margin-left: 250px;margin-top: 40px;">
+        <ul class="pagination" style=" margin-left: 250px;margin-top: 40px;">
+            <li><a href="/tag/index?pageNum=1&enable=${enable}&tagName=${tagName}">首页</a></li>
+            @if(pageInfo.pageNum<=1){
             <li><a href="#">上一页</a></li>
-            <li><a href="#">...</a></li>
-            <li><a href="#">3</a></li>
-            <li  class="active"><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">...</a></li>
-            <li class="disabled"><a href="#">下一页</a></li>
+            @}
+            @if(pageInfo.pageNum>1){
+            <li><a href="/tag/index?pageNum=${pageNum -1}&enable=${enable}&tagName=${tagName}">上一页</a></li>
+            @}
 
 
+            @for(item in pageInfo.navigatepageNums){
+            @if(item == pageInfo.pageNum){
+            <li class="active"><a href="javascript:void(0)">${item}</a></li>
+            @}
+            @if(item != pageInfo.pageNum){
+            <li ><a href="/tag/index?pageNum=${item}&enable=${enable}&tagName=${tagName}">${item}</a></li>
+            @}
+            @}
 
+            @if(pageInfo.pageNum< pageInfo.pages){
+            <li><a href="/tag/index?pageNum=${pageNum +1}&enable=${enable}&tagName=${tagName}">下一页</a></li>
+            @}
+
+            @if(pageInfo.pageNum == pageInfo.pages){
+            <li><a href="javascript:void(0)">下一页</a></li>
+            @}
+
+            @if(pageInfo.pageNum<= pageInfo.pages){
+            <li><a href="/tag/index?pageNum=${pageInfo.pages}&enable=${enable}&tagName=${tagName}">末页</a></li>
+            @}
         </ul>
 
     </nav>
-
 </div>
 
 
@@ -240,25 +294,26 @@ padding-left: 143px;
                 <h4>新建/编辑标签</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal">
+                <form class="form-horizontal" id="tag-form">
+                    <input name="tagId" type="hidden" id="tagId"/>
                     <div class="form-group">
                         <label class="control-label col-xs-4">标签名称</label>
                         <div class="col-xs-8">
-                            <input class="form-control" type="text"/>
+                            <input class="form-control" type="text" name="tagName" id="tagNamePop"/>
                         </div>
 
                     </div>
                     <div class="form-group">
                         <label class="control-label col-xs-4">标签颜色</label>
                         <div class="col-xs-8">
-                            <input class="form-control" type="text"/>
+                            <input class="form-control" type="text" name="tagColor" id="tagColor"/>
                         </div>
 
                     </div>
                     <div class="form-group">
                         <label class="control-label col-xs-4">排序</label>
                         <div class="col-xs-8">
-                            <input class="form-control" type="text"/>
+                            <input class="form-control" type="text" name="sequence" id="sequence"/>
                         </div>
 
                     </div>
@@ -268,13 +323,13 @@ padding-left: 143px;
                             <!--<input class="form-control" type="text"/>-->
                             <div class="radio">
                                 <label>
-                                    <input type="radio"> 是
+                                    <input type="radio" name="enable" value="1" id="yes"> 是
                                 </label>
 
                             </div>
                             <div class="radio">
                                 <label>
-                                    <input type="radio"> 否
+                                    <input type="radio" name="enable" value="0" checked id="no"> 否
                                 </label>
 
                             </div>
@@ -289,7 +344,7 @@ padding-left: 143px;
             </div>
             <div class="modal-footer">
                 <button class="btn btn-default" type="button" data-dismiss="modal">关闭</button>
-                <button class="btn btn-primary" type="button">保存</button>
+                <button class="btn btn-primary" type="button" id="tag-save">保存</button>
             </div>
         </div>
     </div>
@@ -338,6 +393,56 @@ padding-left: 143px;
     })
 
 
+
+    $('#tag-save').click(function() {
+
+        $.ajax({
+            type: 'post',
+            url: '/tag/addOrUpdateTag',
+            data:$('#tag-form').serialize(),
+            success: function(result){
+                if(result.code == 'success'){
+                    // alert("保存成功");
+                    $('.alert-danger').removeClass('hide').addClass('in');
+                    window.location.href = "/tag/index";
+                }else{
+                    alert("保存失败");
+                }
+
+            }
+        });
+
+
+    });
+
+
+    function getUpdateData(tagId) {
+        // 查询分类数据
+        $.ajax({
+            type: 'get',
+            url: '/tag/getTagById',
+            data: {tagId: tagId},
+            success: function (result) {
+                $("#tagNamePop").val(result.data.tagName);
+                $("#sequence").val(result.data.sequence);
+                $("#tagId").val(result.data.tagId);
+                $("#tagColor").val(result.data.tagColor);
+                if (result.data.enable == "0") {
+                    $("#no").attr("checked", "checked");
+                    $("#yes").removeAttr("checked");
+                } else {
+                    $("#yes").attr("checked", "checked");
+                    $("#no").removeAttr("checked");
+                }
+
+            }
+        })
+
+
+        $('#myModal').modal({
+            backdrop:"static"
+        });
+    }
 
 
 
