@@ -37,7 +37,7 @@
 		}
 		.bread{
 			width:100%;
-			background-color:yellow;
+			/*background-color:yellow;*/
 			height:50px;
 		}
 
@@ -251,96 +251,96 @@
 	</div>
 
 	<form action="/article/saveOrUpdateArticle " method="post" id="article_form">
-	<div class="content_line">
+		<!--<div class="content_line">-->
 
-			<lable class="lable">
-				文章id
+			<!--<lable class="lable">-->
+				<!--文章id-->
+			<!--</lable>-->
+			<!--<div class = "content_div">-->
+				<!--<span>1234567</span>-->
+			<!--</div>-->
+
+		<!--</div>-->
+		<div class="content_line">
+			<lable class="lable"><em>*</em>文章标题
 			</lable>
 			<div class = "content_div">
-				<span>1234567</span>
+				<input type="text" class="article_title" name="articleName"></input>
 			</div>
 
-	</div>
-	<div class="content_line">
-		<lable class="lable"><em>*</em>文章标题
-		</lable>
-		<div class = "content_div">
-			<input type="text" class="article_title" name="articleName"></input>
 		</div>
+		<div class="content_line">
+			<lable class="lable">是否显示
+			</lable>
+			<div class = "content_div">
+				<div class="radio yes"> <input type="radio" class="radio" name="enable" value="1">是</input></div>
 
-	</div>
-	<div class="content_line">
-		<lable class="lable">是否显示
-		</lable>
-		<div class = "content_div">
-			<div class="radio yes"> <input type="radio" class="radio" name="enable" value="1">是</input></div>
+				<div class="radio no"> <input type="radio" class="radio" name="enable" value="0" checked>否</input></div>
 
-			<div class="radio no"> <input type="radio" class="radio" name="enable" value="0" checked>否</input></div>
-
-		</div>
-
-	</div>
-
-	<div class="content_line">
-		<lable class="lable"><em>*</em>所属分类
-		</lable>
-		<div class = "content_div">
-			<div class="cata first">
-				<select name="cataId" id="first_level">
-					<option value="">请选择一级分类</option>
-					<option>人工智能</option>
-					<option>机器学习</option>
-					<option>大数据</option>
-					<option>Java</option>
-				</select>
-			</div>
-
-			<div class="cata sec">
-				<select  id="sec_lev" name="subCataId">
-					<option value="">请选择二级分类</option>
-					<option>hadoop</option>
-					<option>hive</option>
-				</select>
 			</div>
 
 		</div>
 
-
-	</div>
-
-
-	<div class="content_line">
-		<lable class="lable">标签
-		</lable>
-		<div class = "content_div">
-			<div class="lable selected" id="label-selected">
-				<input type="hidden" name="tagIds"/>
-			</div>
-
-			<div class="lable all">
-				<div class="kexuan">
-					<span>可选标签</span>
+		<div class="content_line">
+			<lable class="lable"><em>*</em>所属分类
+			</lable>
+			<div class = "content_div">
+				<div class="cata first">
+					<select name="cataId" id="first_level">
+						<option value="">请选择一级分类</option>
+						<option>人工智能</option>
+						<option>机器学习</option>
+						<option>大数据</option>
+						<option>Java</option>
+					</select>
 				</div>
-				<div class="tag" id="tagList">
-					<li data="1"><span>大数据</span></li>
-					<li data="2"><span>人工智能</span></li>
-					<li data="3"><span>kafka</span></li>
-					<li data="4"><span>java</span></li>
+
+				<div class="cata sec">
+					<select  id="sec_lev" name="subCataId">
+						<option value="">请选择二级分类</option>
+						<option>hadoop</option>
+						<option>hive</option>
+					</select>
 				</div>
 
 			</div>
 
+
 		</div>
-	</div>
 
-	<div class="summit">
-		<button class="baocun">编辑正文内容</button>
-	</div>
 
-	<div class="summit">
-		<button class="baocun" onclick="saveArticle()">保存</button>
+		<div class="content_line">
+			<lable class="lable">标签
+			</lable>
+			<div class = "content_div">
+				<div class="lable selected" id="label-selected">
+					<input type="hidden" name="tagIds"/>
+				</div>
 
-	</div>
+				<div class="lable all">
+					<div class="kexuan">
+						<span>可选标签</span>
+					</div>
+					<div class="tag" id="tagList">
+						<li data="1"><span>大数据</span></li>
+						<li data="2"><span>人工智能</span></li>
+						<li data="3"><span>kafka</span></li>
+						<li data="4"><span>java</span></li>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+		<div class="summit">
+			<button class="baocun">编辑正文内容</button>
+		</div>
+
+		<div class="summit">
+			<button class="baocun" onclick="saveArticle()">保存</button>
+
+		</div>
 
 </div>
 
@@ -356,10 +356,10 @@
 
 <script type="text/javascript">
 
-	//保存文章
-	function saveArticle(){
-	    $("#article_form").submit();
-	}
+    //保存文章
+    function saveArticle(){
+        $("#article_form").submit();
+    }
     $(".tag").on("click","li",function(){
         var id = $(this).attr("data");
         var text = $(this).children("span").html();
@@ -402,12 +402,12 @@
             data:{cataLevel:"1"},
             dataType: "json",
             success: function(result){
-			    var first_lev = "<option value=\"\">请选择一级分类</option>";
-			    for(var i=0; i<result.data.length; i++){
-			        first_lev = first_lev + "<option value="+result.data[i].cata_id+">" + result.data[i].cata_name + "</option>";
-				}
+                var first_lev = "<option value=\"\">请选择一级分类</option>";
+                for(var i=0; i<result.data.length; i++){
+                    first_lev = first_lev + "<option value="+result.data[i].cata_id+">" + result.data[i].cata_name + "</option>";
+                }
 
-				$("#first_level").html(first_lev);
+                $("#first_level").html(first_lev);
                 console.log(result.data);
             }
         });
@@ -440,7 +440,7 @@
                 "<li data=\"1\"><span>大数据</span></li>";
                 for(var i=0; i<result.data.length; i++){
                     tag_list = tag_list + "<li data=" + result.data[i].tag_id + "><span>" +
-						result.data[i].tag_name + "</span></li>";
+                        result.data[i].tag_name + "</span></li>";
                 }
 
                 $("#tagList").html(tag_list);

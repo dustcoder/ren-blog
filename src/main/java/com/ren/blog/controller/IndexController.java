@@ -48,47 +48,11 @@ public class IndexController {
             model.addObject("pageInfo", pageInfo);
             //分类名
             model.addObject("article",article);
-//            model.addObject("enable",article.getEnable());
-
-//            model
-//        model.addObject("cataList",);
             return model;
 
         }catch (Exception e){
             e.printStackTrace();
             return null;
         }
-
-
-
-
-
-
-
-//        ModelAndView view = new ModelAndView();
-//        view.setViewName("index.html");
-//        try{
-//            //主页查找文章信息
-//            List<Article> articleList = articleService.getArticleList(article,pageNum,pageSize);
-//            //批量查询 一对多有什么好方法 todo
-//            for(Article article : articleList){
-//                List<TagArticle> tagArticleList =  tagService.getTagArticleList(article.getArticleId());
-//                String tagArticleName = "";
-//                for(TagArticle tagArticle : tagArticleList){
-//                    tagArticleName = tagArticleName + " " +  tagArticle.getTagName() ;
-//                }
-//                article.setTagName(tagArticleName);
-//                if(article.getCataId() != null && article.getSubCataId() != null){
-//                    article.setCataName(article.getFirstCateName() + "-" + article.getSecCataName());
-//                }else {
-//                    article.setCataName(article.getFirstCateName() == null ? article.getSecCataName() : article.getFirstCateName());
-//                }
-//            }
-//            view.addObject("articleList",articleList);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//            view.addObject("articleList",null);
-//        }
-//        return view;
     }
 }
