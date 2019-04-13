@@ -20,6 +20,12 @@ public class CataServiceImpl implements CataService{
 
     @Autowired
     private CataMapper cataMapper;
+
+    @Override
+    public List<Map<String, Object>> getAllCataList() {
+        return cataMapper.getAllCataList();
+    }
+
     @Override
     public PageInfo getCataList(Cata cata,Integer pageNum,Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);
@@ -39,4 +45,6 @@ public class CataServiceImpl implements CataService{
     public Cata getCataById(String cataId) {
         return cataMapper.selectByPrimaryKey(Integer.parseInt(cataId));
     }
+
+
 }

@@ -76,7 +76,11 @@
       and cata_name = #{cataName,jdbcType=VARCHAR}
     </if>
 </select>
-
+  
+  
+  <select id="getAllCataList" resultType="java.util.Map">
+    select cata_id,cata_name from cata where  enable = '1'
+  </select>
 
   <insert id="saveOrUpdateCata" parameterType="com.ren.blog.model.Cata">
   <selectKey keyProperty="count" resultType="int" order="BEFORE">

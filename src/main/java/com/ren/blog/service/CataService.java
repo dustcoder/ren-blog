@@ -18,5 +18,7 @@ public interface CataService {
 
     Cata getCataById(String cataId);
 
+    List<Map<String,Object>> getAllCataList();
+
 
 }

@@ -48,4 +48,7 @@ public interface CataMapper {
     List<Cata> getCataList(Cata cata);
 
     int saveOrUpdateCata(Cata record);
+
+
+    List<Map<String,Object>> getAllCataList();
 }

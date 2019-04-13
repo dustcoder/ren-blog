@@ -92,29 +92,6 @@ public class UploadController {
         try {
             request.setCharacterEncoding( "utf-8" );
             response.setHeader( "Content-Type" , "text/html" );
-
-//            String rootPath = request.getSession().getServletContext().getRealPath("/upload/");
-//            System.out.println(rootPath);
-
-//            String rootPath = "..//..//..//..//static//image";
-//            System.out.println(ResourceUtils.getURL("classpath:").getPath());;
-//            System.out.println(location);
-//            /**
-//             *
-//             * 文件路径不存在则需要创建文件路径
-//             */
-//            File filePath=new File(rootPath);
-//            if(!filePath.exists()){
-//                filePath.mkdirs();
-//            }
-
-            //最终文件名
-//            File realFile=new File(rootPath+File.separator+attach.getOriginalFilename());
-//            realFile.createNewFile();
-//            FileOutputStream fout = new FileOutputStream(realFile);
-//            fout.write(attach.getBytes());
-//            fout.close();
-
             String fileName = attach.getOriginalFilename();
             int pot = fileName.lastIndexOf(".");
             String exName = "";

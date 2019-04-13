@@ -10,6 +10,15 @@ public class Article implements Serializable {
     private String tagName;
     private String cataName;
     private String mdContent;
+    private String fileName;
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
 
     public String getMdContent() {
         return mdContent;

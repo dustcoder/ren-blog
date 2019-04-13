@@ -44,12 +44,12 @@
       cata_id, `enable`, update_time, 
       update_by, create_time, create_by, 
       title, sub_cata_id, src_image, 
-      content,md_content)
+      content,md_content,file_name)
     values (#{articleId,jdbcType=INTEGER}, #{articleName,jdbcType=VARCHAR}, #{readCount,jdbcType=BIGINT}, 
       #{cataId,jdbcType=INTEGER}, #{enable,jdbcType=CHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{updateBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, 
       #{title,jdbcType=VARCHAR}, #{subCataId,jdbcType=INTEGER}, #{srcImage,jdbcType=VARCHAR}, 
-      #{content,jdbcType=LONGVARCHAR},#{mdContent,jdbcType=LONGVARCHAR})
+      #{content,jdbcType=LONGVARCHAR},#{mdContent,jdbcType=LONGVARCHAR},#{fileName,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.ren.blog.model.Article" >
 

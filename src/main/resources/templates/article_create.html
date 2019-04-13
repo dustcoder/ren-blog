@@ -250,16 +250,7 @@
 		</ul>
 	</div>
 
-	<form action="/article/saveOrUpdateArticle " method="post" id="article_form">
-		<!--<div class="content_line">-->
-
-			<!--<lable class="lable">-->
-				<!--文章id-->
-			<!--</lable>-->
-			<!--<div class = "content_div">-->
-				<!--<span>1234567</span>-->
-			<!--</div>-->
-
+	<form action="/article/saveOrUpdateArticle " method="post" id="article_form" enctype="multipart/form-data">
 		<!--</div>-->
 		<div class="content_line">
 			<lable class="lable"><em>*</em>文章标题
@@ -288,18 +279,10 @@
 				<div class="cata first">
 					<select name="cataId" id="first_level">
 						<option value="">请选择一级分类</option>
-						<option>人工智能</option>
-						<option>机器学习</option>
-						<option>大数据</option>
-						<option>Java</option>
-					</select>
-				</div>
-
-				<div class="cata sec">
-					<select  id="sec_lev" name="subCataId">
-						<option value="">请选择二级分类</option>
-						<option>hadoop</option>
-						<option>hive</option>
+						<!--<option>人工智能</option>-->
+						<!--<option>机器学习</option>-->
+						<!--<option>大数据</option>-->
+						<!--<option>Java</option>-->
 					</select>
 				</div>
 
@@ -333,9 +316,21 @@
 			</div>
 		</div>
 
-		<div class="summit">
-			<button class="baocun">编辑正文内容</button>
+
+
+
+
+		<div class="content_line">
+			<lable class="lable">图片
+			</lable>
+			<div class = "content_div">
+				<input type="file" name="file"/>
+			</div>
 		</div>
+
+		<!--<div class="summit">-->
+			<!--<button class="baocun">编辑正文内容</button>-->
+		<!--</div>-->
 
 		<div class="summit">
 			<button class="baocun" onclick="saveArticle()">保存</button>
@@ -398,35 +393,34 @@
         //获取一级分类
         $.ajax({
             type: 'get',
-            url: '/cata/getCataList',
-            data:{cataLevel:"1"},
+            url: '/cata/getAllCataList',
+            // data:{cataLevel:"1"},
             dataType: "json",
             success: function(result){
-                var first_lev = "<option value=\"\">请选择一级分类</option>";
+                var first_lev = "<option value=\"\">请选择分类</option>";
                 for(var i=0; i<result.data.length; i++){
                     first_lev = first_lev + "<option value="+result.data[i].cata_id+">" + result.data[i].cata_name + "</option>";
                 }
-
                 $("#first_level").html(first_lev);
                 console.log(result.data);
             }
         });
 
-        //获取二级分类
-        $.ajax({
-            type: 'get',
-            url: '/cata/getCataList',
-            data:{cataLevel:"2"},
-            dataType: "json",
-            success: function(result){
-                var sec_lev = "<option value=\"\">请选择二级分类</option>";
-                for(var i=0; i<result.data.length; i++){
-                    sec_lev = sec_lev + "<option value="+result.data[i].cata_id+">" + result.data[i].cata_name + "</option>";
-                }
-
-                $("#sec_lev").html(sec_lev);
-            }
-        });
+        // //获取二级分类
+        // $.ajax({
+        //     type: 'get',
+        //     url: '/cata/getCataList',
+        //     data:{cataLevel:"2"},
+        //     dataType: "json",
+        //     success: function(result){
+        //         var sec_lev = "<option value=\"\">请选择二级分类</option>";
+        //         for(var i=0; i<result.data.length; i++){
+        //             sec_lev = sec_lev + "<option value="+result.data[i].cata_id+">" + result.data[i].cata_name + "</option>";
+        //         }
+        //
+        //         $("#sec_lev").html(sec_lev);
+        //     }
+        // });
 
 
         //获取所有标签

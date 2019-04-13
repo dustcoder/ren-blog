@@ -67,4 +67,11 @@ public class CataController {
         return ResultUtil.success(cataService.getCataById(cataId));
     }
 
+
+    @GetMapping("/cata/getAllCataList")
+    @ResponseBody
+    public Object getAllCataList(HttpServletRequest request){
+        return ResultUtil.success(cataService.getAllCataList());
+    }
+
 }
