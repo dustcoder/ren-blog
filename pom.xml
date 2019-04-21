@@ -109,6 +109,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>back</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.mybatis.generator</groupId>

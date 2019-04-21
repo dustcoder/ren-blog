@@ -28,8 +28,8 @@
     <result column="read_count" property="readCount" jdbcType="BIGINT" />
     <result column="cata_id" property="cataId" jdbcType="INTEGER" />
     <result column="enable" property="enable" jdbcType="CHAR" />
-    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
-    <result column="cate_name" property="cateName" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    <result column="cata_name" property="cataName" jdbcType="VARCHAR"/>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     <!--
@@ -54,16 +54,17 @@
   <update id="updateByPrimaryKey" parameterType="com.ren.blog.model.Article" >
 
     update article
-    set
-       <if test="articleName != null and articleName != ''">article_name = #{articleName,jdbcType=VARCHAR},</if>
-    <if test="enable != null and enable != ''"> `enable` = #{enable,jdbcType=CHAR},</if>
-    <if test="updateTime != null and updateTime != ''">update_time = #{updateTime,jdbcType=TIMESTAMP},</if>
-    <if test="updateBy != null and updateBy != ''">update_by = #{updateBy,jdbcType=VARCHAR},</if>
-    <if test="title != null and title != ''">title = #{title,jdbcType=VARCHAR},</if>
-    <if test="subCataId != null and subCataId != ''">sub_cata_id = #{subCataId,jdbcType=INTEGER},</if>
-    <if test="cataId != null and cataId != ''">cata_id = #{cataId,jdbcType=INTEGER},</if>
-    <if test="content != null and content != ''"> content = #{content,jdbcType=LONGVARCHAR},</if>
-    <if test="mdContent != null and mdContent != ''">md_content=#{mdContent,jdbcType=LONGVARCHAR}</if>
+    <set>
+      <if test="articleName != null and articleName != ''">article_name = #{articleName,jdbcType=VARCHAR},</if>
+      <if test="enable != null and enable != ''"> `enable` = #{enable,jdbcType=CHAR},</if>
+      <if test="updateTime != null and updateTime != ''">update_time = #{updateTime,jdbcType=TIMESTAMP},</if>
+      <if test="updateBy != null and updateBy != ''">update_by = #{updateBy,jdbcType=VARCHAR},</if>
+      <if test="title != null and title != ''">title = #{title,jdbcType=VARCHAR},</if>
+      <if test="subCataId != null and subCataId != ''">sub_cata_id = #{subCataId,jdbcType=INTEGER},</if>
+      <if test="cataId != null and cataId != ''">cata_id = #{cataId,jdbcType=INTEGER},</if>
+      <if test="content != null and content != ''"> content = #{content,jdbcType=LONGVARCHAR},</if>
+      <if test="mdContent != null and mdContent != ''">md_content=#{mdContent,jdbcType=LONGVARCHAR},</if>
+    </set>
     where article_id = #{articleId,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -87,7 +88,7 @@
   </select>
 
   <select id="getArticleList" resultMap="articleMap" parameterType="com.ren.blog.model.Article">
-        SELECT
+    SELECT
       a.article_id,
       a.article_name,
       a.read_count,

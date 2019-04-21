@@ -7,6 +7,7 @@ package com.ren.blog.controller;
 
 import com.ren.blog.model.Article;
 import com.ren.blog.service.ArticleService;
+import com.ren.blog.service.CataService;
 import com.ren.blog.service.TagService;
 import com.ren.blog.util.ResultUtil;
 import com.ren.blog.util.UuidUtils;
@@ -25,6 +26,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class ArticleController {
@@ -34,6 +37,9 @@ public class ArticleController {
 
     @Autowired
     private TagService tagService;
+
+    @Autowired
+    private CataService cataService;
 
 
     @Value("${img.location}")
@@ -77,7 +83,7 @@ public class ArticleController {
     }
 
     //新增文章信息
-    @PostMapping("/article/saveOrUpdateArticle")
+    @PostMapping("/article/saveArticle")
     @Transactional
     public ModelAndView saveOrUpdateArticle(HttpServletRequest request, HttpServletResponse response,
                                            @RequestParam(value="tagIds") String tagIds,
@@ -113,5 +119,40 @@ public class ArticleController {
         }
         ModelAndView view = new ModelAndView("redirect:/index");
         return view;
+    }
+
+
+    //新增文章信息
+    @PostMapping("/article/updateArticle")
+    @Transactional
+    public ModelAndView updateArticle(HttpServletRequest request, HttpServletResponse response){
+        try {
+            Article article = new Article();
+            article.setArticleId(Integer.parseInt(request.getParameter("articleId")));
+            article.setEnable(request.getParameter("enable"));
+            article.setCataId(Integer.parseInt(request.getParameter("cataId")));
+            article.setArticleName(request.getParameter("articleName"));
+            articleService.updateArticle(article);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        ModelAndView view = new ModelAndView("redirect:/index");
+        return view;
+    }
+
+
+
+
+    //初始化编辑页面
+    @GetMapping("/initArticleUpdate")
+    public ModelAndView initArticleUpdate( @RequestParam(value="articleId") String articleId){
+        ModelAndView modelAndView = new ModelAndView();
+        Article article = articleService.getArticle(Integer.parseInt(articleId));
+        List<Map<String,Object>> list = cataService.getAllCataList();
+        modelAndView.setViewName("article_update.html");
+        modelAndView.addObject("articleId",articleId);
+        modelAndView.addObject("article",article);
+        modelAndView.addObject("cataList",list);
+        return modelAndView;
     }
 }
